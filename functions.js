@@ -29,6 +29,7 @@ function loadAssets() {
     GameInstance.load.video('intro', 'assets/intro.mp4');
     GameInstance.load.image('credits', 'assets/credits.png');
     GameInstance.load.image('board', 'assets/board.png');
+    GameInstance.load.image('home','assets/home.png');
 };
 
 
@@ -37,4 +38,18 @@ function background(state) {
     state.background.position.setTo(GameInstance.world.centerX,GameInstance.world.centerY);
     state.background.scale.setTo(1.5,1.5);
     state.background.anchor.setTo(0.5,0.5);
+}
+
+function home(state) {
+    state.home = GameInstance.add.button(GameInstance.world.centerX+500,GameInstance.world.centerY-350,'home');
+    state.home.scale.setTo(1.5,1.5);
+    state.home.events.onInputDown.add(function(){
+        GameInstance.state.start('state1');
+    },this);
+    state.home.events.onInputOver.add(function(){
+        state.home.alpha = 0.7;
+    },this)
+    state.home.events.onInputOut.add(function(){
+        state.home.alpha = 1;
+    },this)
 }
