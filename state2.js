@@ -1,6 +1,6 @@
 demo.state2 = function(){};
 demo.state2.prototype = {
-    questions:{}, draw:{}, total:0, tryAgain:0,
+    questions:{}, draw:{}, total:0, tryAgain:0, timer: null, seconds: 0,
     preload:function(){
         loadAssets();
     },
@@ -8,6 +8,10 @@ demo.state2.prototype = {
         GameInstance.stage.backgroundColor = '#DDDDDD';
         console.log("state2");
         addChangeStateEventListers();
+        //Timer
+        this.timer = GameInstance.time.create(false);
+        this.timer.loop(2000,function(){this.seconds++},this);
+        //this.timer.start();
         //Background
         background(this);
         //Home
@@ -40,6 +44,11 @@ demo.state2.prototype = {
             type: PhaserInput.InputType.number
         });
 
+        //
+        this.measurement = GameInstance.add.text(550,365,"cm");
+        this.measurement.fontSize = 50;
+        this.measurement.fontWeight = 'normal';
+
         //Board
         this.clipboard = GameInstance.add.sprite(400,300,'clipboard');
         this.clipboard.alpha = 1;
@@ -64,10 +73,34 @@ demo.state2.prototype = {
             console.log("UserAns: " + this.input0.value);
             if (this.input0.value == this.correctAns && this.total < 5) {
                 console.log("Next button appeared.");
+                //Timer
+                this.timer.start();
+                this.timer.resume();
+                //
                 this.draw.btnCheck.visible = false;
                 this.txtCheck.visible = false;
                 this.draw.btnNext.visible = true;
                 this.txtNext.visible = true;
+                //2nd way of tween chaining
+                this.tween0.onComplete.add(function(){
+                    this.tween4.start(); //Lines
+                    this.tween5.start(); //Lines
+                    
+                },this);
+                this.tween4.onComplete.add(function(){
+                    this.tween1.start();
+                    this.tween2.start();
+                },this);
+                this.tween1.onComplete.add(function(){
+                    this.tween6.start();
+                    this.tween7.start();
+                },this);
+                this.tween6.onComplete.add(function(){
+                    this.tween3.start();
+                },this);
+                this.tween0.start();
+                console.log(this.tween0);
+               
             }
             else if (this.input0.value != this.correctAns && this.input0.value != 0) {
                 this.draw.btnCheck.visible = false;
@@ -106,14 +139,14 @@ demo.state2.prototype = {
             console.log("BtnCheck first layer");
             console.log("CorrectAns: "+ this.correctAns);
             console.log("UserAns: " + this.input0.value);
-            if (this.input0.value == this.correctAns && this.total < 5) 
+            if (this.input0.value == this.correctAns && this.total < 5 && this.seconds >= 2) 
             {
                 console.log("User got it correct");
                 this.draw.btnNext.visible = false;
                 this.txtNext.visible = false;
                 this.draw.btnCheck.visible = true;
-                this.txtCheck.visible = true;
-                //
+                this.txtCheck.visible = true; 
+                //Changing the questions if user got it correct upon clicking btnNext
                 this.metre = this.randomNumbers().metreProperty;
                 this.cm = this.randomNumbers().cmProperty;
                 this.correctAns = (this.metre * 100) + this.cm;  
@@ -121,6 +154,25 @@ demo.state2.prototype = {
                 this.total++;
                 this.input0.setText("");
                 console.log("Questions: " + this.total + "/5");
+                //Changing the texts for the tween
+                this.text0.setText(this.metre + " m " + this.cm + " cm ");
+                this.text1.setText(this.metre + " m ");
+                this.text2.setText(this.cm + " cm ");
+                this.text3.setText(this.correctAns+ " cm ");
+                this.text0.alpha = 0;
+                this.text1.alpha = 0;
+                this.text2.alpha = 0;
+                this.text3.alpha = 0;
+                this.line0.alpha = 0;
+                this.line2.alpha = 0;
+                this.line3.alpha = 0;
+                this.line4.alpha = 0;
+                //Timer
+                this.timer.pause();
+                this.seconds = 0;
+                //
+
+                
             }
 
         },this);
@@ -177,8 +229,80 @@ demo.state2.prototype = {
        },
        this);
 
+       //LineGraphics
+       this.drawLine = GameInstance.add.graphics(0,0);
+       this.drawLine.lineStyle(3,0x000000,1);
+       this.drawLine.moveTo(840,250);
+       this.drawLine.lineTo(1100,250);
+
+       //Creating texts and lines for the tween.
+       this.text0 = GameInstance.add.text(860,450-30,"");
+       this.text0.fontSize = 30;
+       this.text0.fontWeight = 'normal';
+       this.text0.setText(this.metre + " m " + this.cm + " cm ");
+       this.text0.alpha = 0;
+
+       this.text1 = GameInstance.add.text(800,550-20,"");
+       this.text1.fontSize = 30;
+       this.text1.fontWeight = 'normal';
+       this.text1.setText(this.metre + " m ");
+       this.text1.alpha = 0;
+
+       this.text2 = GameInstance.add.text(1000,550-20,"");
+       this.text2.fontSize = 30;
+       this.text2.fontWeight = 'normal';
+       this.text2.setText(this.cm + " cm ");
+       this.text2.alpha = 0;
+
+       this.text3 = GameInstance.add.text(880,650,"");
+       this.text3.fontSize = 30;
+       this.text3.fontWeight = 'normal';
+       this.text3.setText(this.correctAns+ " cm ");
+       this.text3.alpha = 0;
+
+       this.line0 = GameInstance.add.graphics(0,0);
+       this.line0.lineStyle(1,0x000000,1);
+       this.line0.moveTo(this.text0.x+70,this.text0.y+35);
+       this.line0.lineTo(this.text1.x+30,this.text1.y);
+       this.line0.endFill();
+       this.line0.alpha = 0;
+
+       this.line2 = GameInstance.add.graphics(0,0);
+       this.line2.lineStyle(1,0x000000,1);
+       this.line2.moveTo(this.text0.x+70,this.text0.y+35);
+       this.line2.lineTo(this.text2.x+30,this.text2.y);
+       this.line2.endFill();
+       this.line2.alpha = 0;
+
+       this.line3 = GameInstance.add.graphics(0,0);
+       this.line3.lineStyle(1,0x000000,1);
+       this.line3.moveTo(this.text3.x+55,this.text3.y);
+       this.line3.lineTo(this.text1.x+30,this.text1.y+30);
+       this.line3.endFill();
+       this.line3.alpha = 0;
+
+       this.line4 = GameInstance.add.graphics(0,0);
+       this.line4.lineStyle(1,0x000000,1);
+       this.line4.moveTo(this.text3.x+55,this.text3.y);
+       this.line4.lineTo(this.text2.x+30,this.text2.y+30);
+       this.line4.endFill();
+       this.line4.alpha = 0;
+
+       //PhaserTween
+       this.tween0 = this.game.add.tween(this.text0).to({alpha:1},500,Phaser.Easing.Linear.None);
+       this.tween1 = this.game.add.tween(this.text1).to({alpha:1},500,Phaser.Easing.Linear.None);
+       this.tween2 = this.game.add.tween(this.text2).to({alpha:1},500,Phaser.Easing.Linear.None);
+       this.tween3 = this.game.add.tween(this.text3).to({alpha:1},500,Phaser.Easing.Linear.None);
+       //
+       this.tween4 = this.game.add.tween(this.line0).to({alpha:1},500,Phaser.Easing.Linear.None);
+       this.tween5 = this.game.add.tween(this.line2).to({alpha:1},500,Phaser.Easing.Linear.None);
+       this.tween6 = this.game.add.tween(this.line3).to({alpha:1},500,Phaser.Easing.Linear.None);
+       this.tween7 = this.game.add.tween(this.line4).to({alpha:1},500,Phaser.Easing.Linear.None);
+
+
     },
     update:function(){
+        console.log("What is the time: " + this.seconds);
     },
     randomNumbers: function(){
         let metre = (Math.floor(Math.random()*9)+1);
