@@ -1,6 +1,6 @@
 demo.state2 = function(){};
 demo.state2.prototype = {
-    questions:{},
+    questions:{}, draw:{},
     preload:function(){
         loadAssets();
     },
@@ -39,6 +39,12 @@ demo.state2.prototype = {
             max: 9999,
             type: PhaserInput.InputType.number
         });
+
+
+        //Button
+        this.draw.b0 = GameInstance.add.graphics(0,0);
+        this.draw.b0.lineStyle(1,0x150E88,1);
+        this.draw.b0.beginFill(1,0x150E88,);
 
     },
     update:function(){
