@@ -1,6 +1,6 @@
 demo.state2 = function(){};
 demo.state2.prototype = {
-    questions:{}, draw:{}, total:0, tryAgain:0, timer: null, seconds: 0,
+    questions:{}, draw:{}, total:0, tryAgain:0, timer: null, seconds: 0, boolShowAnswer: false,
     preload:function(){
         loadAssets();
     },
@@ -115,6 +115,7 @@ demo.state2.prototype = {
                     this.txtTryAgain.visible = false;
                     this.draw.btnShowAnswer.visible = true;
                     this.txtShowAnswer.visible = true;
+                    
                 }
             }
         },this);
@@ -139,7 +140,7 @@ demo.state2.prototype = {
             console.log("BtnCheck first layer");
             console.log("CorrectAns: "+ this.correctAns);
             console.log("UserAns: " + this.input0.value);
-            if (this.input0.value == this.correctAns && this.total < 5 && this.seconds >= 2) 
+            if (this.input0.value == this.correctAns && this.total < 5 && this.seconds >= 2 || this.boolShowAnswer == true && this.total < 5 && this.seconds >= 2) 
             {
                 console.log("User got it correct");
                 this.draw.btnNext.visible = false;
@@ -222,10 +223,39 @@ demo.state2.prototype = {
         },this);
         this.draw.btnShowAnswer.events.onInputDown.add(function(){
             console.log("User got it correct");
-           this.draw.btnShowAnswer.visible = false;
-           this.txtShowAnswer.visible = false;
-           this.draw.btnNext.visible = true;
-           this.txtNext.visible = true;
+            this.draw.btnShowAnswer.visible = false;
+            this.txtShowAnswer.visible = false;
+            this.draw.btnNext.visible = true;
+            this.txtNext.visible = true;
+            //Timer
+            this.timer.resume();
+            this.timer.start();
+            //
+            this.tryAgain = 0;
+            this.input0.setText(this.correctAns);
+            //2nd way of tween chaining
+            this.tween0.onComplete.add(function(){
+                this.tween4.start(); //Lines
+                this.tween5.start(); //Lines
+                
+            },this);
+            this.tween4.onComplete.add(function(){
+                this.tween1.start();
+                this.tween2.start();
+            },this);
+            this.tween1.onComplete.add(function(){
+                this.tween6.start();
+                this.tween7.start();
+            },this);
+            this.tween6.onComplete.add(function(){
+                this.tween3.start();
+            },this);
+            this.tween0.start();
+            console.log(this.tween0);
+            //Showanswer boolean
+            this.boolShowAnswer = true;
+
+
        },
        this);
 
@@ -302,7 +332,20 @@ demo.state2.prototype = {
 
     },
     update:function(){
-        console.log("What is the time: " + this.seconds);
+        //console.log("What is the time: " + this.seconds);
+        //console.log("Try again: " + this.tryAgain);
+        if (this.seconds < 2){
+            this.draw.btnNext.tint = 0x00000;
+            this.draw.btnNext.alpha = 0.1;
+            this.txtNext.alpha = 0.3;
+            this.draw.btnNext.inputEnabled = false;
+        }
+        else if (this.seconds >2){
+            this.draw.btnNext.tint = 0xC5DEFD;
+            this.draw.btnNext.alpha = 1;
+            this.txtNext.alpha = 1;
+            this.draw.btnNext.inputEnabled = true;
+        }
     },
     randomNumbers: function(){
         let metre = (Math.floor(Math.random()*9)+1);
