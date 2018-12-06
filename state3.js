@@ -127,11 +127,18 @@ demo.state3.prototype = {
                 console.log("What is value of this.tryAgain: " + this.tryAgain);
 
                 if (this.input0.value < 100) {
-                    this.word.setText(this.metre + "  m  " + this.cm + "  cm  ");
-                    this.tween8.start();
-                    this.tween9.start();
-                    this.tween10.start();
-                    this.tween111.start();
+                    this.text00.setText(this.metre + " m " + this.cm + " cm ");
+                    this.text11.setText(this.metre + " m ");
+                    this.text22.setText(this.cm + " cm ");
+                    this.tween44.start(); //Lines
+                    this.tween55.start(); //Lines
+                    this.tween11.start();
+                    this.tween22.start();
+                    this.tween00.start();
+                    this.boolRemoveTween = true;
+                    this.cloudtxt0.setText("1 m = 100 cm" + "\n" + this.metre + " m = " + this.metre*100 + " cm");
+                    this.cloud.alpha = 1;
+                    this.cloudtxt0.alpha = 1;
                 }
                 else if (this.input0.value > 100) {
                     this.text00.setText(this.metre + " m " + this.cm + " cm ");
@@ -436,8 +443,8 @@ demo.state3.prototype = {
        this.drawCircle1.endFill();
        this.drawCircle1.alpha = 0;
        //Cloud
-       this.cloud = GameInstance.add.sprite(600,200,'cloud');
-       this.cloudtxt0 = GameInstance.add.text(700,295,"1 m = 100 cm" + "\n" + this.metre + " m = " + this.metre*100 + " cm");
+       this.cloud = GameInstance.add.sprite(600+210,200,'cloud');
+       this.cloudtxt0 = GameInstance.add.text(700+210,295,"1 m = 100 cm" + "\n" + this.metre + " m = " + this.metre*100 + " cm");
        this.cloudtxt0.fontWeight = 'normal';
        this.cloud.alpha = 0;
        this.cloudtxt0.alpha = 0;
