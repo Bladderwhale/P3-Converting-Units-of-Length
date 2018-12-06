@@ -100,6 +100,8 @@ demo.state2.prototype = {
                 },this);
                 this.tween0.start();
                 console.log(this.tween0);
+
+                this.tick.alpha = 1;
                
             }
             else if (this.input0.value != this.correctAns && this.input0.value != 0) {
@@ -115,6 +117,7 @@ demo.state2.prototype = {
                     this.tween9.start();
                     this.tween10.start();
                     this.tween111.start();
+                    this.cross.alpha = 1;
                 }
                 else if (this.input0.value > 100) {
                     this.text00.setText(this.metre + " m " + this.cm + " cm ");
@@ -129,6 +132,8 @@ demo.state2.prototype = {
                     this.cloudtxt0.setText("1 m = 100 cm" + "\n" + this.metre + " m = " + this.metre*100 + " cm");
                     this.cloud.alpha = 1;
                     this.cloudtxt0.alpha = 1;
+
+                    this.cross.alpha = 1;
                 }
                 if (this.tryAgain == 1) {
                     this.draw.btnNext.visible = false;
@@ -162,6 +167,8 @@ demo.state2.prototype = {
             console.log("BtnCheck first layer");
             console.log("CorrectAns: "+ this.correctAns);
             console.log("UserAns: " + this.input0.value);
+            this.cross.alpha = 0;
+            this.tick.alpha = 0;
             if (this.input0.value == this.correctAns && this.total < 5 && this.seconds >= 2 || this.boolShowAnswer == true && this.total < 5 && this.seconds >= 2) 
             {
                 console.log("User got it correct");
@@ -237,6 +244,8 @@ demo.state2.prototype = {
             //
             this.cloud.alpha = 0;
             this.cloudtxt0.alpha = 0;
+
+            this.cross.alpha = 0;
         },
         this);
 
@@ -258,11 +267,11 @@ demo.state2.prototype = {
             this.draw.btnShowAnswer.alpha = 1;
         },this);
         this.draw.btnShowAnswer.events.onInputDown.add(function(){
-            console.log("User got it correct");
             this.draw.btnShowAnswer.visible = false;
             this.txtShowAnswer.visible = false;
             this.draw.btnNext.visible = true;
             this.txtNext.visible = true;
+            this.cross.alpha = 0;
             //Timer
             this.timer.resume();
             this.timer.start();
@@ -445,6 +454,12 @@ demo.state2.prototype = {
        this.tween22 = this.game.add.tween(this.text22).to({alpha:1},500,Phaser.Easing.Linear.None);
        this.tween44 = this.game.add.tween(this.line00).to({alpha:1},500,Phaser.Easing.Linear.None);
        this.tween55 = this.game.add.tween(this.line22).to({alpha:1},500,Phaser.Easing.Linear.None);
+
+       //Adding the crosses and ticks
+       this.tick = GameInstance.add.sprite(500,400,'tick');
+       this.cross = GameInstance.add.sprite(500,400,'cross');
+       this.tick.alpha = 0;
+       this.cross.alpha = 0;
 
 
     },
