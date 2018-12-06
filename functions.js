@@ -31,6 +31,7 @@ function loadAssets() {
     GameInstance.load.image('board', 'assets/board.png');
     GameInstance.load.image('home','assets/home.png');
     GameInstance.load.image('clipboard','assets/clipboard.png');
+    GameInstance.load.image('cloud', 'assets/cloud.png');
 };
 
 
