@@ -87,7 +87,7 @@ demo.state3.prototype = {
             console.log("BtnCheck first layer");
             console.log("CorrectAns: "+ this.correctAns);
             console.log("UserAns: " + this.input0.value);
-            if (this.input0.value == this.metre && this.total < 5 && this.input1.value == this.cm) {
+            if (this.input0.value == this.metre && this.total < 5 && this.input1.value == this.cm && this.input1.value != 0) {
                 console.log("Next button appeared.");
                 this.tick.alpha = 1;
                 //Timer
@@ -125,7 +125,7 @@ demo.state3.prototype = {
                 this.draw.btnTryAgain.visible = true;
                 this.txtTryAgain.visible = true;
                 console.log("What is value of this.tryAgain: " + this.tryAgain);
-
+                this.cross.alpha = 1;
                 if (this.input0.value < 100) {
                     this.text00.setText(this.metre + " m " + this.cm + " cm ");
                     this.text11.setText(this.metre + " m ");
@@ -200,6 +200,7 @@ demo.state3.prototype = {
                 this.questions.q0.setText("What is " +  this.correctAns + "cm " + "in metres and centimetres? ");
                 this.total++;
                 this.input0.setText("");
+                this.input1.setText("");
                 console.log("Questions: " + this.total + "/5");
                 //Changing the texts for the tween
                 this.text0.setText(this.metre + " m " + this.cm + " cm ");
@@ -247,7 +248,7 @@ demo.state3.prototype = {
             this.draw.btnCheck.visible = true;
             this.txtCheck.visible = true;
             this.tryAgain++;
-
+            this.cross.alpha = 0;
             //For tween
             this.word.alpha = 0;
             this.word1.alpha = 0;
@@ -293,7 +294,8 @@ demo.state3.prototype = {
             this.timer.start();
             //
             this.tryAgain = 0;
-            this.input0.setText(this.correctAns);
+            this.input0.setText(this.metre);
+            this.input1.setText(this.cm);
             //2nd way of tween chaining
             this.tween0.onComplete.add(function(){
                 this.tween4.start(); //Lines
@@ -331,6 +333,9 @@ demo.state3.prototype = {
 
             this.cloud.alpha = 0;
             this.cloudtxt0.alpha = 0;
+
+            //
+            this.cross.alpha = 0;
             
        },
        this);
