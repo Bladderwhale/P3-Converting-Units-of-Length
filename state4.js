@@ -136,30 +136,30 @@ demo.state4.prototype = {
                 console.log("What is value of this.tryAgain: " + this.tryAgain);
                 this.cross.alpha = 1;
                 if (this.input0.value < 100) {
-                    this.text00.setText(this.metre + " m " + this.cm + " cm ");
-                    this.text11.setText(this.metre + " m ");
-                    this.text22.setText(this.cm + " cm ");
+                    this.text00.setText(this.metre + " km " + this.cm + " m ");
+                    this.text11.setText(this.metre + " km ");
+                    this.text22.setText(this.cm + " m ");
                     this.tween44.start(); //Lines
                     this.tween55.start(); //Lines
                     this.tween11.start();
                     this.tween22.start();
                     this.tween00.start();
                     this.boolRemoveTween = true;
-                    this.cloudtxt0.setText("1 m = 100 cm" + "\n" + this.metre + " m = " + this.metre*100 + " cm");
+                    this.cloudtxt0.setText("1 km = 1000 m" + "\n" + this.metre + " km = " + this.metre*1000 + " m");
                     this.cloud.alpha = 1;
                     this.cloudtxt0.alpha = 1;
                 }
                 else if (this.input0.value > 100) {
-                    this.text00.setText(this.metre + " m " + this.cm + " cm ");
-                    this.text11.setText(this.metre + " m ");
-                    this.text22.setText(this.cm + " cm ");
+                    this.text00.setText(this.metre + " km " + this.cm + " m ");
+                    this.text11.setText(this.metre + " km ");
+                    this.text22.setText(this.cm + " m ");
                     this.tween44.start(); //Lines
                     this.tween55.start(); //Lines
                     this.tween11.start();
                     this.tween22.start();
                     this.tween00.start();
                     this.boolRemoveTween = true;
-                    this.cloudtxt0.setText("1 m = 100 cm" + "\n" + this.metre + " m = " + this.metre*100 + " cm");
+                    this.cloudtxt0.setText("1 km = 1000 m" + "\n" + this.metre + " km = " + this.metre*1000 + " m");
                     this.cloud.alpha = 1;
                     this.cloudtxt0.alpha = 1;
                 }
@@ -205,7 +205,7 @@ demo.state4.prototype = {
                 //Changing the questions if user got it correct upon clicking btnNext
                 this.metre = this.randomNumbers().metreProperty;
                 this.cm = this.randomNumbers().cmProperty;
-                this.correctAns = (this.metre * 100) + this.cm;  
+                this.correctAns = (this.metre * 1000) + this.cm;  
                 this.questions.q0.setText("What is " +  this.correctAns + "m " + "in metres and centimetres? ");
                 this.total++;
                 this.input0.setText("");

@@ -169,20 +169,20 @@ demo.state1.prototype = {
         this.graphics.endFill();
 
         //Phaser.Text
-        this.title.t1 = GameInstance.add.text(GameInstance.world.centerX+120,GameInstance.world.centerY-90, 'Metres \nto\nkilometres and metres', { font: '18px Arial', fill: '#000000',align: 'center'});
+        this.title.t1 = GameInstance.add.text(GameInstance.world.centerX+120,GameInstance.world.centerY-90, 'Kilometres and metres \nto\nmetres', { font: '18px Arial', fill: '#000000',align: 'center'});
         this.title.t1.fontWeight = 'bold';
-        this.title.t1.addFontWeight('normal',6);
-        this.title.t1.addFontWeight('bold',9);
+        this.title.t1.addFontWeight('normal',22);
+        this.title.t1.addFontWeight('bold',24);
         this.title.t1.addColor('#ff0000',0);
-        this.title.t1.addColor('#000000',6);
+        this.title.t1.addColor('#000000',21);
         this.title.t1.fontSize = 25;
         
         //Phaser.Line
         this.line = new Phaser.Line(GameInstance.world.centerX+120,GameInstance.world.centerY+10,GameInstance.world.centerX+390,GameInstance.world.centerY+10);
         this.graphics = GameInstance.add.graphics(0,0);
         this.graphics.lineStyle(1, 0x000000, 1);
-        this.graphics.moveTo(this.line.start.x,this.line.start.y);//moving position of graphic if you draw mulitple lines
-        this.graphics.lineTo(this.line.end.x,this.line.end.y);
+        this.graphics.moveTo(this.line.start.x+90,this.line.start.y);//moving position of graphic if you draw mulitple lines
+        this.graphics.lineTo(this.line.end.x-90,this.line.end.y);
         this.graphics.endFill();
 
         //Phaser.Text
