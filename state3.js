@@ -1,6 +1,6 @@
 demo.state3 = function(){};
 demo.state3.prototype = {
-    questions:{}, draw:{}, total:0, tryAgain:0, timer: null, seconds: 0, boolShowAnswer: false, boolRemoveTween: false,
+    questions:{}, draw:{}, total:1, tryAgain:0, timer: null, seconds: 0, boolShowAnswer: false, boolRemoveTween: false,
     preload:function(){
         loadAssets();
     },
@@ -87,7 +87,7 @@ demo.state3.prototype = {
             console.log("BtnCheck first layer");
             console.log("CorrectAns: "+ this.correctAns);
             console.log("UserAns: " + this.input0.value);
-            if (this.input0.value == this.metre && this.total < 5 && this.input1.value == this.cm && this.input1.value != 0) {
+            if (this.input0.value == this.metre && this.total <= 5 && this.input1.value == this.cm && this.input1.value != 0) {
                 console.log("Next button appeared.");
                 this.tick.alpha = 1;
                 //Timer
@@ -117,6 +117,15 @@ demo.state3.prototype = {
                 },this);
                 this.tween0.start();
                 console.log(this.tween0);
+
+                //
+                if (this.total == 5) {
+                    this.draw.btnSegment.visible = true;
+                    this.txtSegment.visible = true;
+                    this.draw.desc.visible = true;
+                    this.desc.visible = true;
+                }
+                
                
             }
             else if (this.input0.value != this.correctAns && this.input0.value != 0) {
@@ -221,6 +230,8 @@ demo.state3.prototype = {
                 //
                 this.tick.alpha = 0;
                 this.cross.alpha = 0;
+                //
+                this.questionNum.setText("Q" + this.total + " of 5");
                 
             }
 
@@ -336,6 +347,14 @@ demo.state3.prototype = {
 
             //
             this.cross.alpha = 0;
+            //
+            //
+            if (this.total == 5) {
+                this.draw.btnSegment.visible = true;
+                this.txtSegment.visible = true;
+                this.draw.desc.visible = true;
+                this.desc.visible = true;
+            }
             
        },
        this);
@@ -481,6 +500,58 @@ demo.state3.prototype = {
        this.cross = GameInstance.add.sprite(750,400,'cross');
        this.tick.alpha = 0;
        this.cross.alpha = 0;
+
+       //
+       //Creating to the next question button.
+       this.draw.btnSegment = GameInstance.add.graphics(0,0);
+       this.draw.btnSegment.lineStyle(1,0x150E88,1);
+       this.draw.btnSegment.beginFill(0xC5DEFD, 1);
+       this.draw.btnSegment.drawRect(1000,800,190,70);
+       this.draw.btnSegment.endFill();
+       this.txtSegment = GameInstance.add.text(1005,820,"Next Question");
+       this.draw.btnSegment.inputEnabled = false;
+       this.draw.btnSegment.visible = false;
+       this.txtSegment.visible = false;
+       //
+       this.draw.desc = GameInstance.add.graphics(0,0);
+       this.draw.desc.lineStyle(1,0x150E88,1);
+       this.draw.desc.beginFill(0xf1f1f1, 1);
+       this.draw.desc.drawRect(1000,880,190,40);
+       this.draw.desc.endFill();
+       this.desc = GameInstance.add.text(1005,885,"m and cm to cm");
+       this.desc.fontWeight = 'bold';
+       this.desc.addFontWeight('normal',8);
+       this.desc.addColor('#ff0000',0);
+       this.desc.addColor('#000000',8);
+       this.desc.fontSize = 24;
+       this.draw.desc.visible = false;
+       this.desc.visible = false;
+       //
+       this.draw.questionNum = GameInstance.add.graphics(0,0);
+       this.draw.questionNum.lineStyle(1,0x150E88,1);
+       this.draw.questionNum.beginFill(0xf1f1f1, 1);
+       this.draw.questionNum.drawRect(250-200,130+60,190,70);
+       this.draw.questionNum.endFill();
+       this.questionNum = GameInstance.add.text(280-200,145+60,"Q" + this.total + " of 5");
+       this.questionNum.fontWeight = 'bold';
+       this.questionNum.addFontWeight('normal',8);
+       this.questionNum.fontSize = 35;
+       this.draw.questionNum.visible = true;
+       this.questionNum.visible = true;
+       
+       this.draw.btnSegment.events.onInputOver.add(function(){
+           this.draw.btnSegment.input.useHandCursor = true;
+        },this);
+        
+        this.draw.btnSegment.events.onInputDown.add(function(){
+            this.total = 1;
+            GameInstance.state.start("state3");
+        },this);
+
+       this.home.events.onInputDown.add(function(){
+           this.total = 1;
+        },this);
+
 
 
     },
