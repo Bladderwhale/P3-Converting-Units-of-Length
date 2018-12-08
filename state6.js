@@ -88,7 +88,7 @@ demo.state6.prototype = {
             console.log("CorrectAns: "+ this.correctAns);
             console.log("UserAns: " + this.input0.value);
             if (this.input0.value == this.metre && this.total <= 5 && this.input1.value == this.cm && this.input1.value != 0 && this.numCheck == 0) {
-                console.log("Next button appeared.");
+                console.log("In kilometres and metres");
                 this.tick.alpha = 1;
                 //Timer
                 this.timer.start();
@@ -169,7 +169,8 @@ demo.state6.prototype = {
                 this.boolCheck0 = true;
                
             }
-            else if (this.input0.value != this.correctAns && this.input0.value != 0) {
+            else if (this.input0.value != this.correctAns && this.input0.value != 0 && this.numCheck == 0) {
+                //Update
                 this.draw.btnCheck.visible = false;
                 this.txtCheck.visible = false;
                 this.draw.btnTryAgain.visible = true;
@@ -201,6 +202,52 @@ demo.state6.prototype = {
                     this.tween00.start();
                     this.boolRemoveTween = true;
                     this.cloudtxt0.setText("1 km = 1000 m" + "\n" + this.metre + " km = " + this.metre*1000 + " m");
+                    this.cloud.alpha = 1;
+                    this.cloudtxt0.alpha = 1;
+                }
+                if (this.tryAgain == 1) {
+                    this.draw.btnNext.visible = false;
+                    this.txtNext.visible = false;
+                    this.draw.btnTryAgain.visible = false;
+                    this.txtTryAgain.visible = false;
+                    this.draw.btnShowAnswer.visible = true;
+                    this.txtShowAnswer.visible = true;
+                    
+                }
+            }
+            else if (this.input0.value != this.correctAns && this.input0.value != 0 && this.numCheck == 1) {
+                //console.log("In metres and centimetres");
+                this.draw.btnCheck.visible = false;
+                this.txtCheck.visible = false;
+                this.draw.btnTryAgain.visible = true;
+                this.txtTryAgain.visible = true;
+                console.log("What is value of this.tryAgain: " + this.tryAgain);
+                this.cross.alpha = 1;
+                if (this.input0.value < 100) {
+                    this.text00.setText(this.metre + " m " + this.cm + " cm ");
+                    this.text11.setText(this.metre + " m ");
+                    this.text22.setText(this.cm + " cm ");
+                    this.tween44.start(); //Lines
+                    this.tween55.start(); //Lines
+                    this.tween11.start();
+                    this.tween22.start();
+                    this.tween00.start();
+                    this.boolRemoveTween = true;
+                    this.cloudtxt0.setText("1 m = 100 cm" + "\n" + this.metre + " m = " + this.metre*1000 + " cm");
+                    this.cloud.alpha = 1;
+                    this.cloudtxt0.alpha = 1;
+                }
+                else if (this.input0.value > 100) {
+                    this.text00.setText(this.metre + " m " + this.cm + " cm ");
+                    this.text11.setText(this.metre + " m ");
+                    this.text22.setText(this.cm + " cm ");
+                    this.tween44.start(); //Lines
+                    this.tween55.start(); //Lines
+                    this.tween11.start();
+                    this.tween22.start();
+                    this.tween00.start();
+                    this.boolRemoveTween = true;
+                    this.cloudtxt0.setText("1 m = 100 cm" + "\n" + this.metre + " m = " + this.metre*100 + " cm");
                     this.cloud.alpha = 1;
                     this.cloudtxt0.alpha = 1;
                 }
@@ -342,7 +389,9 @@ demo.state6.prototype = {
             this.draw.btnShowAnswer.alpha = 1;
         },this);
         this.draw.btnShowAnswer.events.onInputDown.add(function(){
-            console.log("User got it correct");
+            
+            
+            if (this.numCheck == 0) {
             this.draw.btnShowAnswer.visible = false;
             this.txtShowAnswer.visible = false;
             this.draw.btnNext.visible = true;
@@ -402,6 +451,13 @@ demo.state6.prototype = {
                 this.draw.desc.visible = true;
                 this.desc.visible = true;
             }
+
+            this.numCheck = 1;
+        }
+        else if (this.numCheck == 1) { 
+
+        }
+
             
        },
        this);
@@ -748,7 +804,8 @@ demo.state6.prototype = {
             this.draw.btnNext.alpha = 1;
             this.txtNext.alpha = 1;
             this.draw.btnNext.inputEnabled = true;
-        }
+        };
+        console.log("What is this value: " + this.numCheck);
     },
     randomNumbers: function(){
         let metre = (Math.floor(Math.random()*9)+1);
