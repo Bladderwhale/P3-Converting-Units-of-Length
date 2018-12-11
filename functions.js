@@ -34,13 +34,14 @@ function loadAssets() {
     GameInstance.load.image('cloud', 'assets/cloud.png');
     GameInstance.load.image('tick', 'assets/tick.png');
     GameInstance.load.image('cross', 'assets/cross.png');
+    GameInstance.load.image('BackgroundNoText', 'assets/1/BackgroundNoText.jpg');
 };
 
 
 function background(state) {
-    state.background = GameInstance.add.sprite(0,0,'board');
+    state.background = GameInstance.add.sprite(0,0,'BackgroundNoText');
     state.background.position.setTo(GameInstance.world.centerX,GameInstance.world.centerY);
-    state.background.scale.setTo(1.5,1.5);
+    state.background.scale.setTo(1.8755,1.6655);
     state.background.anchor.setTo(0.5,0.5);
 }
 

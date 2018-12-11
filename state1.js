@@ -23,20 +23,20 @@ demo.state1.prototype = {
         //Phaser.Graphics
         //Left
         this.draw.graphics = GameInstance.add.graphics(0,0);
-        this.draw.graphics.lineStyle(5,0x150E88,1);
-        this.draw.graphics.beginFill(0x150E88,0.1);
+        this.draw.graphics.lineStyle(9,0xffdd0e,1);
+        this.draw.graphics.beginFill(0xffdd0e,0.3);
         this.draw.graphics.drawRect(GameInstance.world.centerX-400,GameInstance.world.centerY-150,400,400);
         this.draw.graphics.endFill();
         //Right
         this.draw.graphics1 = GameInstance.add.graphics(0,0);
-        this.draw.graphics1.lineStyle(5,0x150E88,1);
-        this.draw.graphics1.beginFill(0x150E88,0.1);
+        this.draw.graphics1.lineStyle(9,0x150E88,1);
+        this.draw.graphics1.beginFill(0x150E88,0.3);
         this.draw.graphics1.drawRect(GameInstance.world.centerX+50,GameInstance.world.centerY-150,400,400);
         this.draw.graphics1.endFill();
         //Bottom
         this.draw.graphics2 = GameInstance.add.graphics(0,0);
-        this.draw.graphics2.lineStyle(5,0x150E88,1);
-        this.draw.graphics2.beginFill(0x150E88,0.1);
+        this.draw.graphics2.lineStyle(9,0x8B3407,1);
+        this.draw.graphics2.beginFill(0x8B3407,0.3);
         this.draw.graphics2.drawRect(GameInstance.world.centerX-120,GameInstance.world.centerY+280,300,100);
         this.draw.graphics2.endFill();
         //Left Button

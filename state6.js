@@ -256,6 +256,49 @@ demo.state6.prototype = {
                 this.numCheck = 4;
                
             }
+            else if (this.input1.value == this.correctAns1 && this.input1.value != 0 && this.numCheck == 4) {
+                console.log("km and m in m");
+                this.tick.alpha = 1;
+                //Timer
+                this.timer.start();
+                this.timer.resume();
+                //
+                this.draw.btnCheck.visible = false;
+                this.txtCheck.visible = false;
+                this.draw.btnNext.visible = true;
+                this.txtNext.visible = true;
+                //2nd way of tween chaining
+                this.tween0.onComplete.add(function(){
+                    this.tween4.start(); //Lines
+                    this.tween5.start(); //Lines
+                    
+                },this);
+                this.tween4.onComplete.add(function(){
+                    this.tween1.start();
+                    this.tween2.start();
+                },this);
+                this.tween1.onComplete.add(function(){
+                    this.tween6.start();
+                    this.tween7.start();
+                },this);
+                this.tween6.onComplete.add(function(){
+                    this.tween3.start();
+                },this);
+                this.tween0.start();
+                console.log(this.tween0);
+
+                //
+                if (this.total == 5) {
+                    this.draw.btnSegment.visible = true;
+                    this.txtSegment.visible = true;
+                    this.draw.desc.visible = true;
+                    this.desc.visible = true;
+                }
+                this.boolCheck0 = true;
+
+                this.numCheck = 5;
+               
+            }
             else if (this.input0.value != this.correctAns && this.input0.value != 0 && this.numCheck == 0) {
                 //Update
                 this.draw.btnCheck.visible = false;
@@ -389,6 +432,114 @@ demo.state6.prototype = {
                     this.tween00.start();
                     this.boolRemoveTween = true;
                     this.cloudtxt0.setText("1 m = 100 cm" + "\n" + this.metre1 + " m = " + this.metre1*100 + " cm");
+                    this.cloud.alpha = 1;
+                    this.cloudtxt0.alpha = 1; 
+                }
+                if (this.tryAgain == 1) {
+                    this.draw.btnNext.visible = false;
+                    this.txtNext.visible = false;
+                    this.draw.btnTryAgain.visible = false;
+                    this.txtTryAgain.visible = false;
+                    this.draw.btnShowAnswer.visible = true;
+                    this.txtShowAnswer.visible = true;
+                    
+                }
+            }
+            else if (this.input1.value != this.correctAns && this.input1.value != 0 && this.numCheck == 3) {
+                //console.log("In metres and centimetres");
+                this.draw.btnCheck.visible = false;
+                this.txtCheck.visible = false;
+                this.draw.btnTryAgain.visible = true;
+                this.txtTryAgain.visible = true;
+                console.log("What is value of this.tryAgain: " + this.tryAgain);
+                this.cross.alpha = 1;
+                if (this.input1.value < 100) {
+                    console.log("Less than 100");
+                    /*this.text00.setText(this.metre1 + " m " + this.cm1 + " cm ");
+                    this.text11.setText(this.metre1 + " m ");
+                    this.text22.setText(this.cm1 + " cm ");
+                    this.tween44.start(); //Lines
+                    this.tween55.start(); //Lines
+                    this.tween11.start();
+                    this.tween22.start();
+                    this.tween00.start();
+                    this.boolRemoveTween = true;
+                    this.cloudtxt0.setText("1 m = 100 cm" + "\n" + this.metre1 + " m = " + this.metre1*100 + " cm");
+                    this.cloud.alpha = 1;
+                    this.cloudtxt0.alpha = 1; */
+                    this.word.setText(this.metre1 + "  km  " + this.cm1 + "  m  ");
+                    this.tween8.start();
+                    this.tween9.start();
+                    this.tween10.start();
+                    this.tween111.start();
+                    this.cross.alpha = 1;
+                }
+                else if (this.input1.value >= 100) {
+                    console.log("More than 100");
+                    this.text00.setText(this.metre1 + " km " + this.cm1 + " m ");
+                    this.text11.setText(this.metre1 + " km ");
+                    this.text22.setText(this.cm1 + " m ");
+                    this.tween44.start(); //Lines
+                    this.tween55.start(); //Lines
+                    this.tween11.start();
+                    this.tween22.start();
+                    this.tween00.start();
+                    this.boolRemoveTween = true;
+                    this.cloudtxt0.setText("1 km = 1000 m" + "\n" + this.metre1 + " m = " + this.metre1*100 + " m");
+                    this.cloud.alpha = 1;
+                    this.cloudtxt0.alpha = 1; 
+                }
+                if (this.tryAgain == 1) {
+                    this.draw.btnNext.visible = false;
+                    this.txtNext.visible = false;
+                    this.draw.btnTryAgain.visible = false;
+                    this.txtTryAgain.visible = false;
+                    this.draw.btnShowAnswer.visible = true;
+                    this.txtShowAnswer.visible = true;
+                    
+                }
+            }
+            else if (this.input1.value != this.correctAns && this.input1.value != 0 && this.numCheck == 4) {
+                //console.log("In metres and centimetres");
+                this.draw.btnCheck.visible = false;
+                this.txtCheck.visible = false;
+                this.draw.btnTryAgain.visible = true;
+                this.txtTryAgain.visible = true;
+                console.log("What is value of this.tryAgain: " + this.tryAgain);
+                this.cross.alpha = 1;
+                if (this.input1.value < 100) {
+                    console.log("Less than 100");
+                    /*this.text00.setText(this.metre1 + " m " + this.cm1 + " cm ");
+                    this.text11.setText(this.metre1 + " m ");
+                    this.text22.setText(this.cm1 + " cm ");
+                    this.tween44.start(); //Lines
+                    this.tween55.start(); //Lines
+                    this.tween11.start();
+                    this.tween22.start();
+                    this.tween00.start();
+                    this.boolRemoveTween = true;
+                    this.cloudtxt0.setText("1 m = 100 cm" + "\n" + this.metre1 + " m = " + this.metre1*100 + " cm");
+                    this.cloud.alpha = 1;
+                    this.cloudtxt0.alpha = 1; */
+                    this.word.setText(this.metre1 + "  km  " + this.cm1 + "  m  ");
+                    this.tween8.start();
+                    this.tween9.start();
+                    this.tween10.start();
+                    this.tween111.start();
+                    this.cross.alpha = 1;
+                }
+                else if (this.input1.value >= 100) {
+                    console.log("More than 100");
+                    this.text00.setText(this.metre1 + " km " + this.cm1 + " m ");
+                    this.text11.setText(this.metre1 + " km ");
+                    this.text22.setText(this.cm1 + " m ");
+                    this.tween44.start(); //Lines
+                    this.tween55.start(); //Lines
+                    this.tween11.start();
+                    this.tween22.start();
+                    this.tween00.start();
+                    this.boolRemoveTween = true;
+                    this.cloudtxt0.setText("1 km = 1000 m" + "\n" + this.metre1 + " m = " + this.metre1*100 + " m");
                     this.cloud.alpha = 1;
                     this.cloudtxt0.alpha = 1; 
                 }
@@ -538,6 +689,69 @@ demo.state6.prototype = {
                 this.drawLine2.endFill();
             }
             else if (this.numCheck == 3) 
+            {
+                //Total kilometres & m in metres
+                console.log("User got it correct");
+                this.draw.btnNext.visible = false;
+                this.txtNext.visible = false;
+                this.draw.btnCheck.visible = true;
+                this.txtCheck.visible = true; 
+                //Changing the questions if user got it correct upon clicking btnNext
+                this.input0.visible = false;
+                this.measurement.setText("");
+                this.input1.position.setTo(GameInstance.world.centerX-390, GameInstance.world.centerY-150);
+                this.measurement1.setText("m");
+                this.measurement1.position.setTo(GameInstance.world.centerX-200, GameInstance.world.centerY-140);
+                this.metre1 = this.randomNumbers().metreProperty;
+                this.cm1 = this.randomNumbers().cmProperty;
+                this.correctAns1 = (this.metre1 * 1000) + this.cm1; //m 
+                this.questions.q0.alpha = 0;
+                this.questions.q1.setText("What is " +  this.metre1 + " km " + this.cm1 + " m " + "in metres? ");
+                this.questions.q1.fontWeight = 'normal';
+                this.questions.q1.addColor('#ff0000',7);
+                this.questions.q1.addColor('#000000',17);
+                this.questions.q1.addFontWeight('bold',7);
+                this.questions.q1.addFontWeight('normal',17);
+                this.questions.q1.fontSize = 50;
+                this.questions.q1.position.setTo(GameInstance.world.centerX-440,GameInstance.world.centerY-300);
+                this.total++;
+                this.input0.setText("");
+                this.input1.setText("");
+                console.log("Questions: " + this.total + "/5");
+                //Changing the texts for the tween
+                this.text0.setText(this.metre1 + " km " + this.cm1 + " m ");
+                this.text1.setText(this.metre1 + " km ");
+                this.text2.setText(this.cm1 + " m ");
+                this.text3.setText(this.correctAns1+ " m ");
+                this.text0.alpha = 0;
+                this.text1.alpha = 0;
+                this.text2.alpha = 0;
+                this.text3.alpha = 0;
+                this.line0.alpha = 0;
+                this.line2.alpha = 0;
+                this.line3.alpha = 0;
+                this.line4.alpha = 0;
+                //Timer
+                this.timer.pause();
+                this.seconds = 0;
+                //
+                this.tick.position.setTo(500,400);
+                this.tick.alpha = 0;
+                this.cross.alpha = 0;
+                this.cross.position.setTo(500,400);
+                //
+                this.questionNum.setText("Q" + this.total + " of 5");
+                //
+                this.drawLine.alpha = 0;
+                this.drawLine1.alpha = 0;
+                this.drawLine2.alpha = 0;
+                this.drawLine3 = GameInstance.add.graphics(0,0)
+                this.drawLine3.lineStyle(3,0x000000,1);
+                this.drawLine3.moveTo(800,250);
+                this.drawLine3.lineTo(970,250);
+                this.drawLine3.endFill();
+            }
+            else if (this.numCheck == 4) 
             {
                 //Total kilometres & m in metres
                 console.log("User got it correct");
@@ -854,6 +1068,132 @@ demo.state6.prototype = {
             this.numCheck = 3;
 
         }
+        else if (this.numCheck == 3) { 
+            this.draw.btnShowAnswer.visible = false;
+            this.txtShowAnswer.visible = false;
+            this.draw.btnNext.visible = true;
+            this.txtNext.visible = true;
+            //Timer
+            this.timer.resume();
+            this.timer.start();
+            //
+            this.tryAgain = 0;
+            //this.input0.setText(this.metre1);
+            this.input1.setText(this.correctAns1);
+            //2nd way of tween chaining
+            this.tween0.onComplete.add(function(){
+                this.tween4.start(); //Lines
+                this.tween5.start(); //Lines
+            },this);
+            this.tween4.onComplete.add(function(){
+                this.tween1.start();
+                this.tween2.start();
+            },this);
+            this.tween1.onComplete.add(function(){
+                this.tween6.start();
+                this.tween7.start();
+            },this);
+            this.tween6.onComplete.add(function(){
+                this.tween3.start();
+            },this);
+            this.tween0.start();
+            console.log(this.tween0);
+            //Showanswer boolean
+            this.boolShowAnswer = true;
+
+            //For tryAgain tween
+            this.word.alpha = 0;
+            this.word1.alpha = 0;
+            this.drawCircle.alpha = 0;
+            this.drawCircle1.alpha = 0;
+            //
+            this.text00.alpha = 0;
+            this.text11.alpha = 0;
+            this.text22.alpha = 0;
+            this.line00.alpha = 0;
+            this.line22.alpha = 0;
+            //
+
+            this.cloud.alpha = 0;
+            this.cloudtxt0.alpha = 0;
+
+            //
+            this.cross.alpha = 0;
+            //
+            //
+            if (this.total == 5) {
+                this.draw.btnSegment.visible = true;
+                this.txtSegment.visible = true;
+                this.draw.desc.visible = true;
+                this.desc.visible = true;
+            }
+
+            this.numCheck = 4;
+
+        }
+        else if (this.numCheck == 4) { 
+            this.draw.btnShowAnswer.visible = false;
+            this.txtShowAnswer.visible = false;
+            this.draw.btnNext.visible = true;
+            this.txtNext.visible = true;
+            //Timer
+            this.timer.resume();
+            this.timer.start();
+            //
+            this.tryAgain = 0;
+            //this.input0.setText(this.metre1);
+            this.input1.setText(this.correctAns1);
+            //2nd way of tween chaining
+            this.tween0.onComplete.add(function(){
+                this.tween4.start(); //Lines
+                this.tween5.start(); //Lines
+            },this);
+            this.tween4.onComplete.add(function(){
+                this.tween1.start();
+                this.tween2.start();
+            },this);
+            this.tween1.onComplete.add(function(){
+                this.tween6.start();
+                this.tween7.start();
+            },this);
+            this.tween6.onComplete.add(function(){
+                this.tween3.start();
+            },this);
+            this.tween0.start();
+            console.log(this.tween0);
+            //Showanswer boolean
+            this.boolShowAnswer = true;
+
+            //For tryAgain tween
+            this.word.alpha = 0;
+            this.word1.alpha = 0;
+            this.drawCircle.alpha = 0;
+            this.drawCircle1.alpha = 0;
+            //
+            this.text00.alpha = 0;
+            this.text11.alpha = 0;
+            this.text22.alpha = 0;
+            this.line00.alpha = 0;
+            this.line22.alpha = 0;
+            //
+
+            this.cloud.alpha = 0;
+            this.cloudtxt0.alpha = 0;
+
+            //
+            this.cross.alpha = 0;
+            //
+            //
+            if (this.total == 5) {
+                this.draw.btnSegment.visible = true;
+                this.txtSegment.visible = true;
+                this.draw.desc.visible = true;
+                this.desc.visible = true;
+            }
+
+            this.numCheck = 5;
+
+        }
         
 
             
@@ -1139,9 +1479,9 @@ demo.state6.prototype = {
        this.draw.btnSegment = GameInstance.add.graphics(0,0);
        this.draw.btnSegment.lineStyle(1,0x150E88,1);
        this.draw.btnSegment.beginFill(0xC5DEFD, 1);
-       this.draw.btnSegment.drawRect(1000,800,190,70);
+       this.draw.btnSegment.drawRect(1000+160,800,190,70);
        this.draw.btnSegment.endFill();
-       this.txtSegment = GameInstance.add.text(1005,820,"Next Question");
+       this.txtSegment = GameInstance.add.text(1005+160,820,"Next Question");
        this.draw.btnSegment.inputEnabled = false;
        this.draw.btnSegment.visible = false;
        this.txtSegment.visible = false;
@@ -1149,9 +1489,9 @@ demo.state6.prototype = {
        this.draw.desc = GameInstance.add.graphics(0,0);
        this.draw.desc.lineStyle(1,0x150E88,1);
        this.draw.desc.beginFill(0xf1f1f1, 1);
-       this.draw.desc.drawRect(1000,880,190,40);
+       this.draw.desc.drawRect(1000+160,880,190,40);
        this.draw.desc.endFill();
-       this.desc = GameInstance.add.text(1005,885,"m and cm to cm");
+       this.desc = GameInstance.add.text(1005+160,885,"m and cm to cm");
        this.desc.fontWeight = 'bold';
        this.desc.addFontWeight('normal',8);
        this.desc.addColor('#ff0000',0);
