@@ -44,7 +44,6 @@ demo.state7.prototype = {
         this.btnExit.events.onInputDown.add(function(){
             GameInstance.state.start('state1');
         },this);
-        
 
     },
     update: function(){
