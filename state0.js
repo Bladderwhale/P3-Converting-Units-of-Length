@@ -1,12 +1,13 @@
 /**
  * Empty object for all the state.
  */
-var demo = {};
+var demo = {
+    state0: function(){}
+};
 
 /**
  * Add in 3 property as a function in the demo.state0
  */
-demo.state0 = function(){}; //Make the property a global function.
 
 /**
  * @type {Phaser.State}
@@ -42,7 +43,7 @@ demo.state0.prototype = {
         
         //Add video after loadedAssets();
         var video = GameInstance.add.video('intro');
-        video.addToWorld(GameInstance.world.centerX, GameInstance.world.centerY, 0.5, 0.5, 1.5, 1.5);
+        video.addToWorld(GameInstance.world.centerX, GameInstance.world.centerY, 0.5, 0.5, 1.5, 1.4);
         video.play(false);
         
         //Add credits after loadedAssets();

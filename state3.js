@@ -506,9 +506,9 @@ demo.state3.prototype = {
        this.draw.btnSegment = GameInstance.add.graphics(0,0);
        this.draw.btnSegment.lineStyle(1,0x150E88,1);
        this.draw.btnSegment.beginFill(0xC5DEFD, 1);
-       this.draw.btnSegment.drawRect(1000,800,190,70);
+       this.draw.btnSegment.drawRect(1000+160,800,190,70);
        this.draw.btnSegment.endFill();
-       this.txtSegment = GameInstance.add.text(1005,820,"Next Question");
+       this.txtSegment = GameInstance.add.text(1005+160,820,"Next Question");
        this.draw.btnSegment.inputEnabled = false;
        this.draw.btnSegment.visible = false;
        this.txtSegment.visible = false;
@@ -516,9 +516,9 @@ demo.state3.prototype = {
        this.draw.desc = GameInstance.add.graphics(0,0);
        this.draw.desc.lineStyle(1,0x150E88,1);
        this.draw.desc.beginFill(0xf1f1f1, 1);
-       this.draw.desc.drawRect(1000,880,190,40);
+       this.draw.desc.drawRect(1000+160,880,190,40);
        this.draw.desc.endFill();
-       this.desc = GameInstance.add.text(1005,885,"m and cm to cm");
+       this.desc = GameInstance.add.text(1005+160,885,"m and cm to cm");
        this.desc.fontWeight = 'bold';
        this.desc.addFontWeight('normal',8);
        this.desc.addColor('#ff0000',0);

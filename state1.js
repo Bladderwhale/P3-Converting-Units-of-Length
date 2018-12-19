@@ -152,13 +152,13 @@ demo.state1.prototype = {
         this.graphics.endFill();
 
         //Phaser.Text
-        this.title.t1 = GameInstance.add.text(GameInstance.world.centerX+120,GameInstance.world.centerY+60, 'Metres \nto\nkilometres and metres', { font: '18px Arial', fill: '#000000',align: 'center'});
-        this.title.t1.fontWeight = 'bold';
-        this.title.t1.addFontWeight('normal',6);
-        this.title.t1.addFontWeight('bold',9);
-        this.title.t1.addColor('#ff0000',0);
-        this.title.t1.addColor('#000000',6);
-        this.title.t1.fontSize = 25;
+        this.title.t2 = GameInstance.add.text(GameInstance.world.centerX+120,GameInstance.world.centerY+60, 'Metres \nto\nkilometres and metres', { font: '18px Arial', fill: '#000000',align: 'center'});
+        this.title.t2.fontWeight = 'bold';
+        this.title.t2.addFontWeight('normal',6);
+        this.title.t2.addFontWeight('bold',9);
+        this.title.t2.addColor('#ff0000',0);
+        this.title.t2.addColor('#000000',6);
+        this.title.t2.fontSize = 25;
         
         //Phaser.Line
         this.line = new Phaser.Line(GameInstance.world.centerX+120,GameInstance.world.centerY+160,GameInstance.world.centerX+390,GameInstance.world.centerY+160);
@@ -169,13 +169,13 @@ demo.state1.prototype = {
         this.graphics.endFill();
 
         //Phaser.Text
-        this.title.t1 = GameInstance.add.text(GameInstance.world.centerX+120,GameInstance.world.centerY-90, 'Kilometres and metres \nto\nmetres', { font: '18px Arial', fill: '#000000',align: 'center'});
-        this.title.t1.fontWeight = 'bold';
-        this.title.t1.addFontWeight('normal',22);
-        this.title.t1.addFontWeight('bold',24);
-        this.title.t1.addColor('#ff0000',0);
-        this.title.t1.addColor('#000000',21);
-        this.title.t1.fontSize = 25;
+        this.title.t3 = GameInstance.add.text(GameInstance.world.centerX+120,GameInstance.world.centerY-90, 'Kilometres and metres \nto\nmetres', { font: '18px Arial', fill: '#000000',align: 'center'});
+        this.title.t3.fontWeight = 'bold';
+        this.title.t3.addFontWeight('normal',22);
+        this.title.t3.addFontWeight('bold',24);
+        this.title.t3.addColor('#ff0000',0);
+        this.title.t3.addColor('#000000',21);
+        this.title.t3.fontSize = 25;
         
         //Phaser.Line
         this.line = new Phaser.Line(GameInstance.world.centerX+120,GameInstance.world.centerY+10,GameInstance.world.centerX+390,GameInstance.world.centerY+10);
@@ -186,16 +186,28 @@ demo.state1.prototype = {
         this.graphics.endFill();
 
         //Phaser.Text
-        this.title.t1 = GameInstance.add.text(GameInstance.world.centerX-10,GameInstance.world.centerY+315, 'Mixed', { font: '18px Arial', fill: '#000000',align: 'center'});
-        this.title.t1.fontWeight = 'bold';
-        this.title.t1.addFontWeight('normal',6);
-        this.title.t1.addFontWeight('bold',9);
-        this.title.t1.addColor('#ff0000',0);
-        this.title.t1.fontSize = 25;
+        this.title.t4 = GameInstance.add.text(GameInstance.world.centerX-10,GameInstance.world.centerY+315, 'Mixed', { font: '18px Arial', fill: '#000000',align: 'center'});
+        this.title.t4.fontWeight = 'bold';
+        this.title.t4.addFontWeight('normal',6);
+        this.title.t4.addFontWeight('bold',9);
+        this.title.t4.addColor('#ff0000',0);
+        this.title.t4.fontSize = 25;
 
         //Functionality
         this.draw.graphics3.events.onInputDown.add(function(){
-            GameInstance.state.start('state2');
+            GameInstance.state.start('state2'); //Centimetres
+        },this);
+        this.draw.graphics4.events.onInputDown.add(function(){
+            GameInstance.state.start('state3'); //Metres and centimetres
+        },this);
+        this.draw.graphics5.events.onInputDown.add(function(){
+            GameInstance.state.start('state5'); //Metres
+        },this);
+        this.draw.graphics6.events.onInputDown.add(function(){
+            GameInstance.state.start('state4'); //Kilometres and metres
+        },this);
+        this.draw.graphics7.events.onInputDown.add(function(){
+            GameInstance.state.start('state6'); //Mixed
         },this);
     
     },
