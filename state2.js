@@ -484,7 +484,7 @@ demo.state2.prototype = {
        this.draw.btnSegment.drawRect(1000,800,190,70);
        this.draw.btnSegment.endFill();
        this.txtSegment = GameInstance.add.text(1005,820,"Next Question");
-       this.draw.btnSegment.inputEnabled = false;
+       this.draw.btnSegment.inputEnabled = true;
        this.draw.btnSegment.visible = false;
        this.txtSegment.visible = false;
        //

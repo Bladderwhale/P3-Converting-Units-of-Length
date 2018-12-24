@@ -35,6 +35,9 @@ function loadAssets() {
     GameInstance.load.image('tick', 'assets/tick.png');
     GameInstance.load.image('cross', 'assets/cross.png');
     GameInstance.load.image('BackgroundNoText', 'assets/1/BackgroundNoText.jpg');
+    GameInstance.load.image('button1', 'assets/button1.png');
+    GameInstance.load.image('button2', 'assets/button2.png');
+    GameInstance.load.image('button3', 'assets/button3.png');
 };
 
 
