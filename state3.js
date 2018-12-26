@@ -505,6 +505,7 @@ demo.state3.prototype = {
        //Creating to the next question button.
        this.draw.btnSegment = GameInstance.add.graphics(0,0);
        this.draw.btnSegment.lineStyle(1,0x150E88,1);
+       
        this.draw.btnSegment.beginFill(0xC5DEFD, 1);
        this.draw.btnSegment.drawRect(1000+160,800,170,70);
        this.draw.btnSegment.endFill();

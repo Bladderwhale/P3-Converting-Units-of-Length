@@ -232,6 +232,7 @@ demo.state5.prototype = {
              this.draw.btnTryAgain.alpha = 1;
          },this);
          this.draw.btnTryAgain.events.onInputDown.add(function(){
+            this.input0.setText("");
             this.draw.btnTryAgain.visible = false;
             this.txtTryAgain.visible = false;
             this.draw.btnCheck.visible = true;
@@ -484,7 +485,7 @@ demo.state5.prototype = {
        this.draw.btnSegment.drawRect(1000,800,190,70);
        this.draw.btnSegment.endFill();
        this.txtSegment = GameInstance.add.text(1005,820,"Next Question");
-       this.draw.btnSegment.inputEnabled = false;
+       this.draw.btnSegment.inputEnabled = true;
        this.draw.btnSegment.visible = false;
        this.txtSegment.visible = false;
        //
@@ -493,7 +494,7 @@ demo.state5.prototype = {
        this.draw.desc.beginFill(0xf1f1f1, 1);
        this.draw.desc.drawRect(1000,880,190,40);
        this.draw.desc.endFill();
-       this.desc = GameInstance.add.text(1005,885,"m and cm to cm");
+       this.desc = GameInstance.add.text(1005,885,"km and m to m");
        this.desc.fontWeight = 'bold';
        this.desc.addFontWeight('normal',8);
        this.desc.addColor('#ff0000',0);
@@ -520,7 +521,7 @@ demo.state5.prototype = {
         
         this.draw.btnSegment.events.onInputDown.add(function(){
             this.total = 1;
-            GameInstance.state.start("state3");
+            GameInstance.state.start("state4");
         },this);
 
        this.home.events.onInputDown.add(function(){

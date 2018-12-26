@@ -239,6 +239,12 @@ demo.state1.prototype = {
         this.button1.events.onInputDown.add(function(){
             GameInstance.state.start('state2');
         },this);
+        this.button2.events.onInputDown.add(function(){
+            GameInstance.state.start('state5');
+        },this);
+        this.button3.events.onInputDown.add(function(){
+            GameInstance.state.start('state6');
+        },this);
     },
     update: function(){
     }
