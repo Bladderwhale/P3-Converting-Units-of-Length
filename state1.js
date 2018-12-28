@@ -22,9 +22,9 @@ demo.state1.prototype = {
         //End
 
         //Using Phaser.Button
-        this.button1 = GameInstance.add.button(370,370,'button1');
-        this.button2 = GameInstance.add.button(370+440,370,'button2');
-        this.button3 = GameInstance.add.button(630, 740, 'button3');
+        this.button1 = GameInstance.add.button(370,370,'button11');
+        this.button2 = GameInstance.add.button(370+440,370,'button22');
+        this.button3 = GameInstance.add.button(630, 740, 'button33');
        
         //Phaser.Graphics
         //Left (Yellow)
