@@ -79,8 +79,6 @@ demo.state2.prototype = {
                 //
                 this.draw.btnCheck.visible = false;
                 this.txtCheck.visible = false;
-                this.draw.btnNext.visible = true;
-                this.txtNext.visible = true;
                 //2nd way of tween chaining
                 this.tween0.onComplete.add(function(){
                     this.tween4.start(); //Lines
@@ -92,11 +90,16 @@ demo.state2.prototype = {
                     this.tween2.start();
                 },this);
                 this.tween1.onComplete.add(function(){
+                    this.text1.setText(this.metre * 100 + " cm");
                     this.tween6.start();
                     this.tween7.start();
                 },this);
                 this.tween6.onComplete.add(function(){
                     this.tween3.start();
+                },this);
+                this.tween3.onComplete.add(function(){
+                    this.draw.btnNext.visible = true;
+                    this.txtNext.visible = true;
                 },this);
                 this.tween0.start();
                 console.log(this.tween0);
@@ -125,24 +128,63 @@ demo.state2.prototype = {
                     this.tween10.start();
                     this.tween111.start();
                     this.cross.alpha = 1;
+
+                    if (this.tryAgain == 1) {
+                        this.draw.btnNext.visible = false;
+                        this.txtNext.visible = false;
+                        this.draw.btnTryAgain.visible = false;
+                        this.txtTryAgain.visible = false;
+                        this.draw.btnShowAnswer.visible = true;
+                        this.txtShowAnswer.visible = true;
+                        
+                    }
                 }
                 else if (this.input0.value > 100) {
+                    this.draw.btnTryAgain.visible = false;
+                    this.txtTryAgain.visible = false;
                     this.text00.setText(this.metre + " m " + this.cm + " cm ");
-                    this.text11.setText(this.metre + " m ");
-                    this.text22.setText(this.cm + " cm ");
                     this.tween44.start(); //Lines
-                    this.tween55.start(); //Lines
-                    this.tween11.start();
-                    this.tween22.start();
+                    this.tween55.start();
+                    this.tween55.onComplete.add(function(){
+                        this.text11.setText(this.metre + " m ");
+                        this.text22.setText(this.cm + " cm ");
+                        this.tween11.start();
+                        this.tween22.start();
+                    },this); //Lines
+                    this.tween11.onComplete.add(function(){
+                        this.text11.setText(this.metre * 100 + " cm ");
+                        this.cloudTween.start();
+                    },this);
+                    this.cloudTween.onComplete.add(function(){
+                        this.cloudtxt0Tween.start();
+                    },this);
+                    this.cloudtxt0Tween.onComplete.add(function(){
+                        if (this.tryAgain == 1) {
+                            this.draw.btnNext.visible = false;
+                            this.txtNext.visible = false;
+                            this.draw.btnTryAgain.visible = false;
+                            this.txtTryAgain.visible = false;
+                            this.draw.btnShowAnswer.visible = true;
+                            this.txtShowAnswer.visible = true;
+                            
+                        }
+                        if (this.draw.btnShowAnswer.visible == false) {
+                        this.draw.btnTryAgain.visible = true;
+                        this.txtTryAgain.visible = true; }
+                        
+                            
+
+                        }
+                    ,this);
                     this.tween00.start();
                     this.boolRemoveTween = true;
                     this.cloudtxt0.setText("1 m = 100 cm" + "\n" + this.metre + " m = " + this.metre*100 + " cm");
-                    this.cloud.alpha = 1;
-                    this.cloudtxt0.alpha = 1;
-
+                    //this.cloud.alpha = 1;
+                    //this.cloudtxt0.alpha = 1;
+                    
                     this.cross.alpha = 1;
                 }
-                if (this.tryAgain == 1) {
+                /*if (this.tryAgain == 1) {
                     this.draw.btnNext.visible = false;
                     this.txtNext.visible = false;
                     this.draw.btnTryAgain.visible = false;
@@ -150,7 +192,7 @@ demo.state2.prototype = {
                     this.draw.btnShowAnswer.visible = true;
                     this.txtShowAnswer.visible = true;
                     
-                }
+                }*/
             }
         },this);
         //Next
@@ -201,18 +243,22 @@ demo.state2.prototype = {
                 this.text1.alpha = 0;
                 this.text2.alpha = 0;
                 this.text3.alpha = 0;
-                this.line0.alpha = 0;
-                this.line2.alpha = 0;
-                this.line3.alpha = 0;
-                this.line4.alpha = 0;
+                //this.line0.alpha = 0;
+                this.line0.scale.setTo(0,0)
+                //this.line2.alpha = 0;
+                this.line2.scale.setTo(0,0);
+                //this.line3.alpha = 0;
+                this.line3.scale.setTo(0,0);
+                //this.line4.alpha = 0;
+                this.line4.scale.setTo(0,0);
                 //Timer
                 this.timer.pause();
                 this.seconds = 0;
                 //
-
                 this.questionNum.setText("Q" + this.total + " of 5");
+                
             }
-
+            
         },this);
          //Try again.
          this.draw.btnTryAgain = GameInstance.add.graphics(0,0);
@@ -247,8 +293,10 @@ demo.state2.prototype = {
             this.text00.alpha = 0;
             this.text11.alpha = 0;
             this.text22.alpha = 0;
-            this.line00.alpha = 0;
-            this.line22.alpha = 0;
+            //this.line00.alpha = 0;
+            this.line00.scale.setTo(0,0);
+            //this.line22.alpha = 0;
+            this.line22.scale.setTo(0,0);
             //
             this.cloud.alpha = 0;
             this.cloudtxt0.alpha = 0;
@@ -277,8 +325,6 @@ demo.state2.prototype = {
         this.draw.btnShowAnswer.events.onInputDown.add(function(){
             this.draw.btnShowAnswer.visible = false;
             this.txtShowAnswer.visible = false;
-            this.draw.btnNext.visible = true;
-            this.txtNext.visible = true;
             this.cross.alpha = 0;
             //Timer
             this.timer.resume();
@@ -297,11 +343,16 @@ demo.state2.prototype = {
                 this.tween2.start();
             },this);
             this.tween1.onComplete.add(function(){
+                this.text1.setText(this.metre * 100 + " cm")
                 this.tween6.start();
                 this.tween7.start();
             },this);
             this.tween6.onComplete.add(function(){
                 this.tween3.start();
+            },this);
+            this.tween3.onComplete.add(function(){
+                this.draw.btnNext.visible = true;
+                this.txtNext.visible = true;
             },this);
             this.tween0.start();
             console.log(this.tween0);
@@ -317,8 +368,10 @@ demo.state2.prototype = {
             this.text00.alpha = 0;
             this.text11.alpha = 0;
             this.text22.alpha = 0;
-            this.line00.alpha = 0;
-            this.line22.alpha = 0;
+            //this.line00.alpha = 0;
+            this.line00.scale.setTo(0,0);
+            //this.line22.alpha = 0;
+            this.line22.scale.setTo(0,0);
             //
 
             this.cloud.alpha = 0;
@@ -384,47 +437,54 @@ demo.state2.prototype = {
        this.text3.setText(this.correctAns+ " cm ");
        this.text3.alpha = 0;
 
-       this.line0 = GameInstance.add.graphics(0,0);
+       this.line0 = GameInstance.add.graphics(this.text0.x+30,this.text0.y+35);
        this.line0.lineStyle(1,0x000000,1);
-       this.line0.moveTo(this.text0.x+70,this.text0.y+35);
-       this.line0.lineTo(this.text1.x+30,this.text1.y);
+       //this.line0.moveTo(this.text0.x+70,this.text0.y+35);
+       this.line0.lineTo(this.text1.x+30-(this.text0.x+30),this.text1.y-(this.text0.y+35));
        this.line0.endFill();
-       this.line0.alpha = 0;
+       //this.line0.alpha = 0;
+       //this.line0.position.setTo(this.text0.x+70,this.text0.y+35);
+       this.line0.scale.setTo(0,0); //asd
 
-       this.line00 = GameInstance.add.graphics(0,0);
+       this.line00 = GameInstance.add.graphics(this.text0.x+30,this.text0.y+35);
        this.line00.lineStyle(1,0x000000,1);
-       this.line00.moveTo(this.text0.x+70,this.text0.y+35);
-       this.line00.lineTo(this.text1.x+30,this.text1.y);
+       //this.line00.moveTo(this.text0.x+70,this.text0.y+35);
+       this.line00.lineTo(this.text1.x+30-(this.text0.x+30),this.text1.y-(this.text0.y+35));
        this.line00.endFill();
-       this.line00.alpha = 0;
+       this.line00.scale.setTo(0,0);
+       //this.line00.alpha = 0;
 
-       this.line2 = GameInstance.add.graphics(0,0);
+       this.line2 = GameInstance.add.graphics(this.text0.x+100,this.text0.y+35);
        this.line2.lineStyle(1,0x000000,1);
-       this.line2.moveTo(this.text0.x+70,this.text0.y+35);
-       this.line2.lineTo(this.text2.x+30,this.text2.y);
+       //this.line2.moveTo(this.text0.x+70,this.text0.y+35);
+       this.line2.lineTo(this.text2.x+30-(this.text0.x+100),this.text2.y-(this.text0.y+35));
        this.line2.endFill();
-       this.line2.alpha = 0;
+       //this.line2.alpha = 0;
+       this.line2.scale.setTo(0,0);
 
-       this.line22 = GameInstance.add.graphics(0,0);
+       this.line22 = GameInstance.add.graphics(this.text0.x+90,this.text0.y+35);
        this.line22.lineStyle(1,0x000000,1);
-       this.line22.moveTo(this.text0.x+70,this.text0.y+35);
-       this.line22.lineTo(this.text2.x+30,this.text2.y);
+       //this.line22.moveTo(this.text0.x+70,this.text0.y+35);
+       this.line22.lineTo(this.text2.x+30-(this.text0.x+90),this.text2.y-(this.text0.y+35));
        this.line22.endFill();
-       this.line22.alpha = 0;
+       this.line22.scale.setTo(0,0);
+       //this.line22.alpha = 0;
 
-       this.line3 = GameInstance.add.graphics(0,0);
+       this.line3 = GameInstance.add.graphics(this.text1.x+30,this.text1.y+30);
        this.line3.lineStyle(1,0x000000,1);
-       this.line3.moveTo(this.text3.x+55,this.text3.y);
-       this.line3.lineTo(this.text1.x+30,this.text1.y+30);
+       //this.line3.moveTo(this.text3.x+55,this.text3.y);
+       this.line3.lineTo(this.text3.x+20-(this.text1.x+30),(this.text3.y)-(this.text1.y+30));
        this.line3.endFill();
-       this.line3.alpha = 0;
+       //this.line3.alpha = 0;
+       this.line3.scale.setTo(0,0);
 
-       this.line4 = GameInstance.add.graphics(0,0);
+       this.line4 = GameInstance.add.graphics(this.text2.x+30,this.text2.y+30);
        this.line4.lineStyle(1,0x000000,1);
-       this.line4.moveTo(this.text3.x+55,this.text3.y);
-       this.line4.lineTo(this.text2.x+30,this.text2.y+30);
+       //this.line4.moveTo(this.text3.x+55,this.text3.y);
+       this.line4.lineTo(this.text3.x+75-(this.text2.x+30),(this.text3.y)-(this.text2.y+30));
        this.line4.endFill();
-       this.line4.alpha = 0;
+       //this.line4.alpha = 0;
+       this.line4.scale.setTo(0,0);
        //For the tryagain slides 5.
        this.word = GameInstance.add.text(870,430,this.metre + "  m  " + this.cm + "  cm  ");
        this.word1 = GameInstance.add.text(800,520,"The units are different. \nYou need to first change\nm to cm.")
@@ -455,10 +515,11 @@ demo.state2.prototype = {
        this.tween2 = this.game.add.tween(this.text2).to({alpha:1},500,Phaser.Easing.Linear.None);
        this.tween3 = this.game.add.tween(this.text3).to({alpha:1},500,Phaser.Easing.Linear.None);
        //
-       this.tween4 = this.game.add.tween(this.line0).to({alpha:1},500,Phaser.Easing.Linear.None);
-       this.tween5 = this.game.add.tween(this.line2).to({alpha:1},500,Phaser.Easing.Linear.None);
-       this.tween6 = this.game.add.tween(this.line3).to({alpha:1},500,Phaser.Easing.Linear.None);
-       this.tween7 = this.game.add.tween(this.line4).to({alpha:1},500,Phaser.Easing.Linear.None);
+       this.tween4 = this.game.add.tween(this.line0.scale).to({x:1,y:1},1000,Phaser.Easing.Linear.None);
+       
+       this.tween5 = this.game.add.tween(this.line2.scale).to({x:1,y:1},1000,Phaser.Easing.Linear.None);
+       this.tween6 = this.game.add.tween(this.line3.scale).to({x:1,y:1},1000,Phaser.Easing.Linear.None);
+       this.tween7 = this.game.add.tween(this.line4.scale).to({x:1,y:1},1000,Phaser.Easing.Linear.None);
        //For the tryagain slides 5.
        this.tween8 = this.game.add.tween(this.word).to({alpha:1},200,Phaser.Easing.Linear.None);
        this.tween9 = this.game.add.tween(this.word1).to({alpha:1},200,Phaser.Easing.Linear.None);
@@ -468,8 +529,12 @@ demo.state2.prototype = {
        this.tween00 = this.game.add.tween(this.text00).to({alpha:1},500,Phaser.Easing.Linear.None);
        this.tween11 = this.game.add.tween(this.text11).to({alpha:1},500,Phaser.Easing.Linear.None);
        this.tween22 = this.game.add.tween(this.text22).to({alpha:1},500,Phaser.Easing.Linear.None);
-       this.tween44 = this.game.add.tween(this.line00).to({alpha:1},500,Phaser.Easing.Linear.None);
-       this.tween55 = this.game.add.tween(this.line22).to({alpha:1},500,Phaser.Easing.Linear.None);
+       this.tween44 = this.game.add.tween(this.line00.scale).to({x:1,y:1},1000,Phaser.Easing.Linear.None);
+       this.tween55 = this.game.add.tween(this.line22.scale).to({x:1,y:1},1000,Phaser.Easing.Linear.None);
+
+       //Cloud Tween
+       this.cloudTween = this.game.add.tween(this.cloud).to({alpha:1},1000,Phaser.Easing.Linear.None);
+       this.cloudtxt0Tween = this.game.add.tween(this.cloudtxt0).to({alpha:1},1000,Phaser.Easing.Linear.None);
 
        //Adding the crosses and ticks
        this.tick = GameInstance.add.sprite(500,400,'tick');
@@ -537,7 +602,7 @@ demo.state2.prototype = {
     update:function(){
         //console.log("What is the time: " + this.seconds);
         //console.log("Try again: " + this.tryAgain);
-        if (this.seconds < 2){
+        /*if (this.seconds < 2){
             this.draw.btnNext.tint = 0x00000;
             this.draw.btnNext.alpha = 0.1;
             this.txtNext.alpha = 0.3;
@@ -548,7 +613,7 @@ demo.state2.prototype = {
             this.draw.btnNext.alpha = 1;
             this.txtNext.alpha = 1;
             this.draw.btnNext.inputEnabled = true;
-        }
+        }*/
 
         
     },
