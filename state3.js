@@ -350,11 +350,11 @@ demo.state3.prototype = {
                  
              },this);
              this.tween4.onComplete.add(function(){
-                 this.text1.setText(this.metre  + " m")
                  this.tween1.start();
                  this.tween2.start();
              },this);
              this.tween1.onComplete.add(function(){
+                 this.text1.setText(this.metre  + " m");
                  this.tween6.start();
                  this.tween7.start();
              },this);
@@ -557,9 +557,9 @@ demo.state3.prototype = {
        this.draw.btnSegment.lineStyle(1,0x150E88,1);
        
        this.draw.btnSegment.beginFill(0xC5DEFD, 1);
-       this.draw.btnSegment.drawRect(1000+160,800,170,70);
+       this.draw.btnSegment.drawRect(1000+180,800,170,70);
        this.draw.btnSegment.endFill();
-       this.txtSegment = GameInstance.add.text(1005+160,820,"The End");
+       this.txtSegment = GameInstance.add.text(1005+180,820,"The End");
        this.draw.btnSegment.inputEnabled = true;
        this.draw.btnSegment.visible = false;
        this.txtSegment.visible = false;
