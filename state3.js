@@ -559,7 +559,7 @@ demo.state3.prototype = {
        this.draw.btnSegment.beginFill(0xC5DEFD, 1);
        this.draw.btnSegment.drawRect(1000+180,800,170,70);
        this.draw.btnSegment.endFill();
-       this.txtSegment = GameInstance.add.text(1005+180,820,"The End");
+       this.txtSegment = GameInstance.add.text(1005+200,820,"The End");
        this.draw.btnSegment.inputEnabled = true;
        this.draw.btnSegment.visible = false;
        this.txtSegment.visible = false;
