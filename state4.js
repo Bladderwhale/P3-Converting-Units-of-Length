@@ -336,8 +336,8 @@ demo.state4.prototype = {
             console.log("User got it correct");
             this.draw.btnShowAnswer.visible = false;
             this.txtShowAnswer.visible = false;
-            this.draw.btnNext.visible = true;
-            this.txtNext.visible = true;
+            this.draw.btnNext.visible = false;
+            this.txtNext.visible = false;
             //Timer
             this.timer.resume();
             this.timer.start();
@@ -361,6 +361,8 @@ demo.state4.prototype = {
             },this);
             this.tween6.onComplete.add(function(){
                 this.tween3.start();
+                this.draw.btnNext.visible = true;
+                this.txtNext.visible = true;
             },this);
             this.tween0.start();
             console.log(this.tween0);
