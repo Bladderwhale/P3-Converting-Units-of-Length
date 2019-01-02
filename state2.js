@@ -220,7 +220,9 @@ demo.state2.prototype = {
             console.log("UserAns: " + this.input0.value);
             this.cross.alpha = 0;
             this.tick.alpha = 0;
-           
+            this.numAns.alpha = 0;
+            this.numAnsTween1.start();
+            this.drawRoundedRec.alpha = 0;
             if (this.input0.value == this.correctAns && this.total < 5 && this.seconds >= 2 || this.boolShowAnswer == true && this.total < 5 && this.seconds >= 2) 
             {
                 console.log("User got it correct");
@@ -309,7 +311,7 @@ demo.state2.prototype = {
             this.circleanim1.frame = 0;
         },
         this);
-
+        //Add texts
         //ShowAnswer
         this.draw.btnShowAnswer = GameInstance.add.graphics(0,0);
         this.draw.btnShowAnswer.lineStyle(1,0x150E88,1);
@@ -327,7 +329,9 @@ demo.state2.prototype = {
         this.draw.btnShowAnswer.events.onInputOut.add(function(){
             this.draw.btnShowAnswer.alpha = 1;
         },this);
+        drawRect(this);
         this.draw.btnShowAnswer.events.onInputDown.add(function(){
+            
             this.draw.btnShowAnswer.visible = false;
             this.txtShowAnswer.visible = false;
             this.cross.alpha = 0;
@@ -336,7 +340,7 @@ demo.state2.prototype = {
             this.timer.start();
             //
             this.tryAgain = 0;
-            this.input0.setText(this.correctAns);
+            this.input0.setText("");
             //2nd way of tween chaining
             this.tween0.onComplete.add(function(){
                 this.tween4.start(); //Lines
@@ -356,9 +360,16 @@ demo.state2.prototype = {
                 this.tween3.start();
             },this);
             this.tween3.onComplete.add(function(){
+                this.numAns.alpha = 1;
+                this.numAns.setText(this.correctAns);
+                this.numAnsTween.start();//asd
+            },this);
+            this.numAnsTween.onComplete.add(function(){
+                this.drawRoundedRec.alpha = 1;
                 this.draw.btnNext.visible = true;
                 this.txtNext.visible = true;
             },this);
+
             this.tween0.start();
             console.log(this.tween0);
             //Showanswer boolean

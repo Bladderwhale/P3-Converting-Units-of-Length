@@ -63,3 +63,18 @@ function home(state) {
         state.home.alpha = 1;
     },this)
 }
+
+function drawRect(state) {
+    state.drawRoundedRec = GameInstance.add.graphics(0,0);
+    state.drawRoundedRec.lineStyle(0, 0x000000);
+    state.drawRoundedRec.beginFill(0x008000,0.3);
+    state.drawRoundedRec.drawRoundedRect(350,350,178,89);
+    state.drawRoundedRec.endFill();
+    state.drawRoundedRec.alpha = 0;
+    state.numAns = GameInstance.add.text(880,650,'');
+    state.numAns.fontSize = 50;
+    state.numAns.fontWeight = 'normal';
+    state.numAnsTween = GameInstance.add.tween(state.numAns).to({x:380,y:365},1000,Phaser.Easing.Linear.None);
+    state.numAnsTween1 = GameInstance.add.tween(state.numAns).to({x:880,y:650},100,Phaser.Easing.Linear.None)
+   
+}
