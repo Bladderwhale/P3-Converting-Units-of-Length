@@ -38,6 +38,8 @@ function loadAssets() {
     GameInstance.load.image('button11', 'assets/Button1.png');
     GameInstance.load.image('button22', 'assets/Button2.png');
     GameInstance.load.image('button33', 'assets/Button3.png');
+    GameInstance.load.spritesheet('circleanim', 'assets/circleanim.png',580,580,12);
+
 };
 
 

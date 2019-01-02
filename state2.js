@@ -125,7 +125,8 @@ demo.state2.prototype = {
                     this.word.setText(this.metre + "  m  " + this.cm + "  cm  ");
                     this.tween8.start();
                     this.tween9.start();
-                    this.tween10.start();
+                    this.circleanim0.animations.play('drawnCircle',10,false);
+                    //this.tween10.start();
                     this.tween111.start();
                     this.cross.alpha = 1;
 
@@ -302,6 +303,8 @@ demo.state2.prototype = {
             this.cloudtxt0.alpha = 0;
 
             this.cross.alpha = 0;
+
+            this.circleanim0.frame = 0;
         },
         this);
 
@@ -377,6 +380,7 @@ demo.state2.prototype = {
             this.cloud.alpha = 0;
             this.cloudtxt0.alpha = 0;
 
+            this.circleanim0.frame = 0;
             //
             if (this.total == 5) {
                 this.draw.btnSegment.visible = true;
@@ -508,6 +512,10 @@ demo.state2.prototype = {
        this.cloudtxt0.fontWeight = 'normal';
        this.cloud.alpha = 0;
        this.cloudtxt0.alpha = 0;
+       //Cicle aniim
+       this.circleanim0 = GameInstance.add.sprite(910,450,'circleanim');
+       this.circleanim0.scale.setTo(0.2,0.2);
+       this.drawnCircle = this.circleanim0.animations.add('drawnCircle');
 
        //PhaserTween
        this.tween0 = this.game.add.tween(this.text0).to({alpha:1},500,Phaser.Easing.Linear.None);
