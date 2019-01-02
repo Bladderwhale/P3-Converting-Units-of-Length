@@ -96,8 +96,8 @@ demo.state3.prototype = {
                 //
                 this.draw.btnCheck.visible = false;
                 this.txtCheck.visible = false;
-                this.draw.btnNext.visible = true;
-                this.txtNext.visible = true;
+                this.draw.btnNext.visible = false;
+                this.txtNext.visible = false;
                 //2nd way of tween chaining
                 this.tween0.onComplete.add(function(){
                     this.tween4.start(); //Lines
@@ -117,6 +117,11 @@ demo.state3.prototype = {
                 },this);
                 this.tween6.onComplete.add(function(){
                     this.tween3.start();
+                },this);
+                this.tween6.onComplete.add(function(){
+                    this.tween3.start();
+                    this.draw.btnNext.visible = true;
+                    this.txtNext.visible = true;
                 },this);
                 this.tween0.start();
                 console.log(this.tween0);
