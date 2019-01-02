@@ -135,8 +135,8 @@ demo.state4.prototype = {
             else if (this.input0.value != this.correctAns && this.input0.value != 0) {
                 this.draw.btnCheck.visible = false;
                 this.txtCheck.visible = false;
-                this.draw.btnTryAgain.visible = true;
-                this.txtTryAgain.visible = true;
+                this.draw.btnTryAgain.visible = false;
+                this.txtTryAgain.visible = false;
                 console.log("What is value of this.tryAgain: " + this.tryAgain);
                 this.cross.alpha = 1;
                 if (this.input0.value > 9999) {
@@ -158,13 +158,13 @@ demo.state4.prototype = {
                     this.tween44.start(); //Lines
                     this.tween55.start(); //Lines
                     this.tween55.onComplete.add(function(){
-                        this.text11.setText(this.metre + " km ");
+                        this.text11.setText(this.metre*1000+ " m ");
                         this.text22.setText(this.cm + " m ");
                         this.tween11.start();
                         this.tween22.start();
                     },this);
                     this.tween11.onComplete.add(function(){
-                        this.text11.setText(this.metre + " m ");
+                        this.text11.setText(this.metre + " km ");
                         this.cloudTween.start();
                     },this);
                     this.cloudTween.onComplete.add(function(){
@@ -200,8 +200,8 @@ demo.state4.prototype = {
                     this.txtNext.visible = false;
                     this.draw.btnTryAgain.visible = false;
                     this.txtTryAgain.visible = false;
-                    this.draw.btnShowAnswer.visible = true;
-                    this.txtShowAnswer.visible = true;
+                    this.draw.btnShowAnswer.visible = false;
+                    this.txtShowAnswer.visible = false;
                     
                 }
             }
@@ -244,10 +244,10 @@ demo.state4.prototype = {
                 this.input1.setText("");
                 console.log("Questions: " + this.total + "/5");
                 //Changing the texts for the tween
-                this.text0.setText(this.metre + " km " + this.cm + " m ");
-                this.text1.setText(this.metre + " km ");
+                this.text0.setText(this.correctAns+ " km ");
+                this.text1.setText(this.metre*1000 + " m ");
                 this.text2.setText(this.cm + " m ");
-                this.text3.setText(this.correctAns+ " km ");
+                this.text3.setText(this.metre + " km " + this.cm + " m ");
                 this.text0.alpha = 0;
                 this.text1.alpha = 0;
                 this.text2.alpha = 0;
@@ -305,8 +305,10 @@ demo.state4.prototype = {
             this.text00.alpha = 0;
             this.text11.alpha = 0;
             this.text22.alpha = 0;
-            this.line00.alpha = 0;
-            this.line22.alpha = 0;
+            /*this.line00.alpha = 0;
+            this.line22.alpha = 0;*/
+            this.line00.scale.setTo(0,0);
+            this.line22.scale.setTo(0,0);
             //
             this.cloud.alpha = 0;
             this.cloudtxt0.alpha = 0;
@@ -426,7 +428,7 @@ demo.state4.prototype = {
        this.text11.setText(this.metre + " km ");
        this.text11.alpha = 0;
 
-       this.text2 = GameInstance.add.text(1000+230,550-20,"");
+       this.text2 = GameInstance.add.text(1000+200,550-20,"");
        this.text2.fontSize = 30;
        this.text2.fontWeight = 'normal';
        this.text2.setText(this.cm + " m ");
@@ -438,7 +440,7 @@ demo.state4.prototype = {
        this.text22.setText(this.cm + " m ");
        this.text22.alpha = 0;
 
-       this.text3 = GameInstance.add.text(880+230,650,"");
+       this.text3 = GameInstance.add.text(880+215,650,"");
        this.text3.fontSize = 30;
        this.text3.fontWeight = 'normal';
        this.text3.setText(this.metre + " km " + this.cm + " m ");
