@@ -352,7 +352,6 @@ demo.state4.prototype = {
             this.timer.start();
             //
             this.tryAgain = 0;
-            this.input1.setText(this.cm);
             this.input0.setText("");
             this.input1.setText('');
             //2nd way of tween chaining
