@@ -225,7 +225,9 @@ demo.state5.prototype = {
             console.log("UserAns: " + this.input0.value);
             this.cross.alpha = 0;
             this.tick.alpha = 0;
-           
+            this.numAns.alpha = 0;
+            this.numAnsTween1.start();
+            this.drawRoundedRec.alpha = 0;
             if (this.input0.value == this.correctAns && this.total < 5 && this.seconds >= 2 || this.boolShowAnswer == true && this.total < 5 && this.seconds >= 2) 
             {
                 console.log("User got it correct");
@@ -285,6 +287,7 @@ demo.state5.prototype = {
              this.draw.btnTryAgain.alpha = 1;
          },this);
          this.draw.btnTryAgain.events.onInputDown.add(function(){
+            if(this.drawnCircle.isPlaying == false) {
             this.input0.setText("");
             this.draw.btnTryAgain.visible = false;
             this.txtTryAgain.visible = false;
@@ -312,7 +315,7 @@ demo.state5.prototype = {
             this.cross.alpha = 0;
 
             this.circleanim0.frame = 0;
-            this.circleanim1.frame = 0;
+            this.circleanim1.frame = 0;}
         },
         this);
 
@@ -333,7 +336,9 @@ demo.state5.prototype = {
         this.draw.btnShowAnswer.events.onInputOut.add(function(){
             this.draw.btnShowAnswer.alpha = 1;
         },this);
+        drawRect(this);
         this.draw.btnShowAnswer.events.onInputDown.add(function(){
+            if (this.drawnCircle.isPlaying == false) {
             this.draw.btnShowAnswer.visible = false;
             this.txtShowAnswer.visible = false;
             this.draw.btnNext.visible = false;
@@ -344,7 +349,7 @@ demo.state5.prototype = {
             this.timer.start();
             //
             this.tryAgain = 0;
-            this.input0.setText(this.correctAns);
+            this.input0.setText("");
             //2nd way of tween chaining
             this.tween0.onComplete.add(function(){
                 this.tween4.start(); //Lines
@@ -363,6 +368,14 @@ demo.state5.prototype = {
                 this.tween3.start();
             },this);
             this.tween3.onComplete.add(function(){
+                if (this.input0.value != this.correctAns) {
+                this.numAns.alpha = 1;
+                this.numAns.setText(this.correctAns);
+                this.numAnsTween.start();//asd 
+                }
+            },this);
+            this.numAnsTween.onComplete.add(function(){
+                this.drawRoundedRec.alpha = 1;
                 this.draw.btnNext.visible = true;
                 this.txtNext.visible = true;
             },this);
@@ -398,7 +411,7 @@ demo.state5.prototype = {
             }
 
             this.circleanim0.frame = 0;
-            this.circleanim1.frame = 0;
+            this.circleanim1.frame = 0; }
             
        },
        this);

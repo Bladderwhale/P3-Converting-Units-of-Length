@@ -283,6 +283,7 @@ demo.state2.prototype = {
          },this);
          this.draw.btnTryAgain.events.onInputDown.add(function(){
             if (this.drawnCircle.isPlaying == false) {
+            this.input0.setText("");
             this.draw.btnTryAgain.visible = false;
             this.txtTryAgain.visible = false;
             this.draw.btnCheck.visible = true;
