@@ -268,6 +268,14 @@ demo.state4.prototype = {
                 this.cross.alpha = 0;
                 //
                 this.questionNum.setText("Q" + this.total + " of 5");
+
+                this.numAns.alpha = 0;
+                this.drawRoundedRec.alpha = 0;
+                this.numAnsTween1.start();
+
+                this.numAns2.alpha = 0;
+                this.drawRoundedRec2.alpha = 0;
+                this.numAnsTween3.start();
                 
             }
 
@@ -332,6 +340,7 @@ demo.state4.prototype = {
         this.draw.btnShowAnswer.events.onInputOut.add(function(){
             this.draw.btnShowAnswer.alpha = 1;
         },this);
+        drawRect3(this);
         this.draw.btnShowAnswer.events.onInputDown.add(function(){
             console.log("User got it correct");
             this.draw.btnShowAnswer.visible = false;
@@ -343,8 +352,9 @@ demo.state4.prototype = {
             this.timer.start();
             //
             this.tryAgain = 0;
-            this.input0.setText(this.metre);
             this.input1.setText(this.cm);
+            this.input0.setText("");
+            this.input1.setText('');
             //2nd way of tween chaining
             this.tween0.onComplete.add(function(){
                 this.tween4.start(); //Lines
@@ -361,6 +371,21 @@ demo.state4.prototype = {
             },this);
             this.tween6.onComplete.add(function(){
                 this.tween3.start();
+            },this);
+            this.tween3.onComplete.add(function(){
+                console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaa');
+                if (this.input0.value != this.metre && this.input1.value != this.cm) {
+                this.numAns.alpha = 1;
+                this.numAns.setText(this.metre);
+                this.numAnsTween.start();//asd 
+                this.numAns2.alpha = 1
+                this.numAns2.setText(this.cm);
+                this.numAnsTween2.start();
+                }
+            },this);
+            this.numAnsTween.onComplete.add(function(){
+                this.drawRoundedRec.alpha = 1;
+                this.drawRoundedRec2.alpha = 1;
                 this.draw.btnNext.visible = true;
                 this.txtNext.visible = true;
             },this);
@@ -378,8 +403,10 @@ demo.state4.prototype = {
             this.text00.alpha = 0;
             this.text11.alpha = 0;
             this.text22.alpha = 0;
-            this.line00.alpha = 0;
-            this.line22.alpha = 0;
+            /*this.line00.alpha = 0;
+            this.line22.alpha = 0;*/
+            this.line00.scale.setTo(0,0);
+            this.line22.scale.setTo(0,0);
             //
 
             this.cloud.alpha = 0;
