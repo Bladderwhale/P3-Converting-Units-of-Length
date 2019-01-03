@@ -360,9 +360,11 @@ demo.state2.prototype = {
                 this.tween3.start();
             },this);
             this.tween3.onComplete.add(function(){
+                if (this.input0.value != this.correctAns) {
                 this.numAns.alpha = 1;
                 this.numAns.setText(this.correctAns);
-                this.numAnsTween.start();//asd
+                this.numAnsTween.start();//asd 
+                }
             },this);
             this.numAnsTween.onComplete.add(function(){
                 this.drawRoundedRec.alpha = 1;
