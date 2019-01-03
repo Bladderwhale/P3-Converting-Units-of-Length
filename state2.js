@@ -282,6 +282,7 @@ demo.state2.prototype = {
              this.draw.btnTryAgain.alpha = 1;
          },this);
          this.draw.btnTryAgain.events.onInputDown.add(function(){
+            if (this.drawnCircle.isPlaying == false) {
             this.draw.btnTryAgain.visible = false;
             this.txtTryAgain.visible = false;
             this.draw.btnCheck.visible = true;
@@ -308,7 +309,7 @@ demo.state2.prototype = {
             this.cross.alpha = 0;
 
             this.circleanim0.frame = 0;
-            this.circleanim1.frame = 0;
+            this.circleanim1.frame = 0; }
         },
         this);
         //Add texts
@@ -331,7 +332,8 @@ demo.state2.prototype = {
         },this);
         drawRect(this);
         this.draw.btnShowAnswer.events.onInputDown.add(function(){
-            
+            if (this.drawnCircle.isPlaying == false){
+            console.log(this.circleanim0);
             this.draw.btnShowAnswer.visible = false;
             this.txtShowAnswer.visible = false;
             this.cross.alpha = 0;
@@ -403,7 +405,7 @@ demo.state2.prototype = {
                 this.txtSegment.visible = true;
                 this.draw.desc.visible = true;
                 this.desc.visible = true;
-            }
+            }}
             
        },
        this);
