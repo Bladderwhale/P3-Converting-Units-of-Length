@@ -51,7 +51,7 @@ function background(state) {
 }
 
 function home(state) {
-    state.home = GameInstance.add.button(GameInstance.world.centerX+500,GameInstance.world.centerY-350,'home');
+    state.home = GameInstance.add.button(GameInstance.world.centerX+625,GameInstance.world.centerY-450,'home');
     state.home.scale.setTo(1.5,1.5);
     state.home.events.onInputDown.add(function(){
         GameInstance.state.start('state1');
@@ -102,5 +102,20 @@ function drawRect3(state) {
     state.numAns2.fontWeight = 'normal';
     state.numAnsTween2 = GameInstance.add.tween(state.numAns2).to({x:380+275,y:365},1000,Phaser.Easing.Linear.None);
     state.numAnsTween3 = GameInstance.add.tween(state.numAns2).to({x:880+300,y:650},100,Phaser.Easing.Linear.None)
+   
+}
+
+function drawRect6(state) {
+    state.drawRoundedRec6 = GameInstance.add.graphics(0,0);
+    state.drawRoundedRec6.lineStyle(0, 0x000000);
+    state.drawRoundedRec6.beginFill(0x008000,0.3);
+    state.drawRoundedRec6.drawRoundedRect(362.5,350,178,89);
+    state.drawRoundedRec6.endFill();
+    state.drawRoundedRec6.alpha = 0;
+    state.numAns6 = GameInstance.add.text(950,650,'');
+    state.numAns6.fontSize = 50;
+    state.numAns6.fontWeight = 'normal';
+    state.numAnsTween6 = GameInstance.add.tween(state.numAns6).to({x:380,y:365},1000,Phaser.Easing.Linear.None);
+    state.numAnsTween7 = GameInstance.add.tween(state.numAns6).to({x:950,y:650},100,Phaser.Easing.Linear.None)
    
 }

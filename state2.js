@@ -172,7 +172,7 @@ demo.state2.prototype = {
                         }
                         if (this.draw.btnShowAnswer.visible == false) {
                         this.draw.btnTryAgain.visible = true;
-                        this.txtTryAgain.visible = true; }
+                        this.txtTryAgain.v3isible = true; }
                         
                             
 
@@ -588,7 +588,7 @@ demo.state2.prototype = {
        this.draw.desc.beginFill(0xf1f1f1, 1);
        this.draw.desc.drawRect(1000,880,190,40);
        this.draw.desc.endFill();
-       this.desc = GameInstance.add.text(1005,885,"m and cm to cm");
+       this.desc = GameInstance.add.text(1005,885,"cm to m to cm");
        this.desc.fontWeight = 'bold';
        this.desc.addFontWeight('normal',8);
        this.desc.addColor('#ff0000',0);
@@ -600,9 +600,9 @@ demo.state2.prototype = {
        this.draw.questionNum = GameInstance.add.graphics(0,0);
        this.draw.questionNum.lineStyle(1,0x150E88,1);
        this.draw.questionNum.beginFill(0xf1f1f1, 1);
-       this.draw.questionNum.drawRect(100,190,190,70);
+       this.draw.questionNum.drawRect(100+250,190-100,190,70);
        this.draw.questionNum.endFill();
-       this.questionNum = GameInstance.add.text(135,205,"Q" + this.total + " of 5");
+       this.questionNum = GameInstance.add.text(135+250,205-100,"Q" + this.total + " of 5");
        this.questionNum.fontWeight = 'bold';
        this.questionNum.addFontWeight('normal',8);
        this.questionNum.fontSize = 35;

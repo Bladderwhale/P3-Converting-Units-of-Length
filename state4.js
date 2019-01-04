@@ -606,9 +606,9 @@ demo.state4.prototype = {
        this.draw.questionNum = GameInstance.add.graphics(0,0);
        this.draw.questionNum.lineStyle(1,0x150E88,1);
        this.draw.questionNum.beginFill(0xf1f1f1, 1);
-       this.draw.questionNum.drawRect(250-200,130+60,190,70);
+       this.draw.questionNum.drawRect(100+150,190-100,190,70);
        this.draw.questionNum.endFill();
-       this.questionNum = GameInstance.add.text(280-200,145+60,"Q" + this.total + " of 5");
+       this.questionNum = GameInstance.add.text(135+150,205-100,"Q" + this.total + " of 5");
        this.questionNum.fontWeight = 'bold';
        this.questionNum.addFontWeight('normal',8);
        this.questionNum.fontSize = 35;
