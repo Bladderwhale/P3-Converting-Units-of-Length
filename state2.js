@@ -100,18 +100,19 @@ demo.state2.prototype = {
                 this.tween3.onComplete.add(function(){
                     this.draw.btnNext.visible = true;
                     this.txtNext.visible = true;
+                    if (this.total == 5) {
+                        this.draw.btnSegment.visible = true;
+                        this.txtSegment.visible = true;
+                        this.draw.desc.visible = true;
+                        this.desc.visible = true;
+                    }
                 },this);
                 this.tween0.start();
                 console.log(this.tween0);
 
                 this.tick.alpha = 1;
 
-                if (this.total == 5) {
-                    this.draw.btnSegment.visible = true;
-                    this.txtSegment.visible = true;
-                    this.draw.desc.visible = true;
-                    this.desc.visible = true;
-                }
+                
                
             }
             else if (this.input0.value != this.correctAns && this.input0.value != 0) {
@@ -142,6 +143,7 @@ demo.state2.prototype = {
                     }
                 }
                 else if (this.input0.value > 100) {
+                    console.log('aaaaaaaaaaaaaaaaaa')
                     this.draw.btnTryAgain.visible = false;
                     this.txtTryAgain.visible = false;
                     this.text00.setText(this.metre + " m " + this.cm + " cm ");
@@ -172,7 +174,7 @@ demo.state2.prototype = {
                         }
                         if (this.draw.btnShowAnswer.visible == false) {
                         this.draw.btnTryAgain.visible = true;
-                        this.txtTryAgain.v3isible = true; }
+                        this.txtTryAgain.visible = true; }
                         
                             
 
@@ -373,6 +375,13 @@ demo.state2.prototype = {
                 this.drawRoundedRec.alpha = 1;
                 this.draw.btnNext.visible = true;
                 this.txtNext.visible = true;
+
+                if (this.total == 5) {
+                    this.draw.btnSegment.visible = true;
+                    this.txtSegment.visible = true;
+                    this.draw.desc.visible = true;
+                    this.desc.visible = true;
+                }
             },this);
 
             this.tween0.start();
@@ -401,12 +410,7 @@ demo.state2.prototype = {
             this.circleanim0.frame = 0;
             this.circleanim1.frame = 0;
             //
-            if (this.total == 5) {
-                this.draw.btnSegment.visible = true;
-                this.txtSegment.visible = true;
-                this.draw.desc.visible = true;
-                this.desc.visible = true;
-            }}
+            }
             
        },
        this);

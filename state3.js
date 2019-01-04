@@ -386,10 +386,18 @@ demo.state3.prototype = {
                 }
             },this);
             this.numAnsTween.onComplete.add(function(){
+                console.log('aaaaaaaaaaaaaaa')
                 this.drawRoundedRec.alpha = 1;
                 this.drawRoundedRec2.alpha = 1;
                 this.draw.btnNext.visible = true;
                 this.txtNext.visible = true;
+
+                if (this.total == 5) {
+                    this.draw.btnSegment.visible = true;
+                    this.txtSegment.visible = true;
+                    this.draw.desc.visible = true;
+                    this.desc.visible = true;
+                }
             },this);
              this.tween0.start();
              console.log(this.tween0);
@@ -415,12 +423,7 @@ demo.state3.prototype = {
              this.cloudtxt0.alpha = 0;
  
              //
-             if (this.total == 5) {
-                 this.draw.btnSegment.visible = true;
-                 this.txtSegment.visible = true;
-                 this.draw.desc.visible = true;
-                 this.desc.visible = true;
-             }
+            
        },
        this);
 
