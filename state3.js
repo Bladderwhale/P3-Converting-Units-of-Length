@@ -626,7 +626,7 @@ demo.state3.prototype = {
         
         this.draw.btnSegment.events.onInputDown.add(function(){
             this.total = 1;
-            GameInstance.state.start("state3");
+            GameInstance.state.start("state1");
         },this);
 
        this.home.events.onInputDown.add(function(){
