@@ -323,6 +323,9 @@ demo.state3.prototype = {
             //
             this.cloud.alpha = 0;
             this.cloudtxt0.alpha = 0;
+            //
+            this.input0.setText("");
+            this.input1.setText("");
         },
         this);
 

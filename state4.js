@@ -117,18 +117,20 @@ demo.state4.prototype = {
                     this.tween3.start();
                     this.draw.btnNext.visible = true;
                     this.txtNext.visible = true;
+                    if (this.total == 5) {
+                        this.draw.btnSegment.visible = true;
+                        this.txtSegment.visible = true;
+                        this.draw.desc.visible = true;
+                        this.desc.visible = true;
+                    }
+                    
                 },this);
                
                 this.tween0.start();
                 console.log(this.tween0);
 
                 //
-                if (this.total == 5) {
-                    this.draw.btnSegment.visible = true;
-                    this.txtSegment.visible = true;
-                    this.draw.desc.visible = true;
-                    this.desc.visible = true;
-                }
+             
                 
                
             }
