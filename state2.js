@@ -262,6 +262,14 @@ demo.state2.prototype = {
                 this.seconds = 0;
                 //
                 this.questionNum.setText("Q" + this.total + " of 5");
+
+                if (this.total == 3) {
+                    this.questions.q0.setText("What is " +  this.metre + " 222222222m " + this.cm  +" cm "+ "in centimetres? ");
+                    this.text0.setText(this.metre + "ssssssssssssss m " + this.cm + "ssssssssssssss cm ");
+                this.text1.setText(this.metre + "ssssssssss m ");
+                this.text2.setText(this.cm + "ssssssssssss cm ");
+                this.text3.setText(this.correctAns+ "ssssssssss cm ");
+                }
                 
             }
             
@@ -514,7 +522,7 @@ demo.state2.prototype = {
        this.line4.scale.setTo(0,0);
        //For the tryagain slides 5.
        this.word = GameInstance.add.text(870,430,this.metre + "  m  " + this.cm + "  cm  ");
-       this.word1 = GameInstance.add.text(800,520,"The units are different. \nYou need to first change\nm to cm.")
+       this.word1 = GameInstance.add.text(800,520,"The units are different. \nYou need to first change\nm to cm.");
        this.word.fontWeight = 'normal';
        this.word1.fontWeight = 'normal';
        this.word.alpha = 0;
