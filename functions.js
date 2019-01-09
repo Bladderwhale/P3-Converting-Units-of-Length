@@ -35,13 +35,87 @@ function loadAssets() {
     GameInstance.load.image('tick', 'assets/tick.png');
     GameInstance.load.image('cross', 'assets/cross.png');
     GameInstance.load.image('BackgroundNoText', 'assets/1/BackgroundNoText.jpg');
-    GameInstance.load.image('button1', 'assets/Button1.png');
-    GameInstance.load.image('button2', 'assets/Button2.png');
-    GameInstance.load.image('button3', 'assets/Button3.png');
-    GameInstance.load.spritesheet('circle', 'assets/circle.png',580,580,12);
+    GameInstance.load.image('button11', 'assets/Button1.png');
+    GameInstance.load.image('button22', 'assets/Button2.png');
+    GameInstance.load.image('button33', 'assets/Button3.png');
+    GameInstance.load.spritesheet('circleanim', 'assets/circleanim.png',580,580,12);
+
 };
 
-function backGround() {
-    var backGround = GameInstance.add.sprite(0,0,'BackgroundNoText');
+
+function background(state) {
+    state.background = GameInstance.add.sprite(0,0,'BackgroundNoText');
+    state.background.position.setTo(GameInstance.world.centerX,GameInstance.world.centerY);
+    state.background.scale.setTo(1.8755,1.6655);
+    state.background.anchor.setTo(0.5,0.5);
+}
+
+function home(state) {
+    state.home = GameInstance.add.button(GameInstance.world.centerX+625,GameInstance.world.centerY-450,'home');
+    state.home.scale.setTo(1.5,1.5);
+    state.home.events.onInputDown.add(function(){
+        GameInstance.state.start('state1');
+    },this);
+    state.home.events.onInputOver.add(function(){
+        state.home.alpha = 0.7;
+    },this)
+    state.home.events.onInputOut.add(function(){
+        state.home.alpha = 1;
+    },this)
+}
+
+function drawRect(state) {
+    state.drawRoundedRec = GameInstance.add.graphics(0,0);
+    state.drawRoundedRec.lineStyle(0, 0x000000);
+    state.drawRoundedRec.beginFill(0x008000,0.3);
+    state.drawRoundedRec.drawRoundedRect(350,350,178,89);
+    state.drawRoundedRec.endFill();
+    state.drawRoundedRec.alpha = 0;
+    state.numAns = GameInstance.add.text(880,650,'');
+    state.numAns.fontSize = 50;
+    state.numAns.fontWeight = 'normal';
+    state.numAnsTween = GameInstance.add.tween(state.numAns).to({x:380,y:365},1000,Phaser.Easing.Linear.None);
+    state.numAnsTween1 = GameInstance.add.tween(state.numAns).to({x:880,y:650},100,Phaser.Easing.Linear.None)
+   
+}
+function drawRect3(state) {
+    state.drawRoundedRec = GameInstance.add.graphics(0,0);
+    state.drawRoundedRec.lineStyle(0, 0x000000);
+    state.drawRoundedRec.beginFill(0x008000,0.3);
+    state.drawRoundedRec.drawRoundedRect(350-50,350,178,89);
+    state.drawRoundedRec.endFill();
+    state.drawRoundedRec.alpha = 0;
+    state.drawRoundedRec2 = GameInstance.add.graphics(0,0);
+    state.drawRoundedRec2.lineStyle(0, 0x000000);
+    state.drawRoundedRec2.beginFill(0x008000,0.3);
+    state.drawRoundedRec2.drawRoundedRect(350+250,350,178,89);
+    state.drawRoundedRec2.endFill();
+    state.drawRoundedRec.alpha = 0;
+    state.drawRoundedRec2.alpha = 0;
+    state.numAns = GameInstance.add.text(880+220,650,'');
+    state.numAns.fontSize = 50;
+    state.numAns.fontWeight = 'normal';
+    state.numAnsTween = GameInstance.add.tween(state.numAns).to({x:380,y:365},1000,Phaser.Easing.Linear.None);
+    state.numAnsTween1 = GameInstance.add.tween(state.numAns).to({x:880+220,y:650},100,Phaser.Easing.Linear.None);
+    state.numAns2 = GameInstance.add.text(880+300,650,'');
+    state.numAns2.fontSize = 50;
+    state.numAns2.fontWeight = 'normal';
+    state.numAnsTween2 = GameInstance.add.tween(state.numAns2).to({x:380+275,y:365},1000,Phaser.Easing.Linear.None);
+    state.numAnsTween3 = GameInstance.add.tween(state.numAns2).to({x:880+300,y:650},100,Phaser.Easing.Linear.None)
+   
+}
+
+function drawRect6(state) {
+    state.drawRoundedRec6 = GameInstance.add.graphics(0,0);
+    state.drawRoundedRec6.lineStyle(0, 0x000000);
+    state.drawRoundedRec6.beginFill(0x008000,0.3);
+    state.drawRoundedRec6.drawRoundedRect(362.5,350,178,89);
+    state.drawRoundedRec6.endFill();
+    state.drawRoundedRec6.alpha = 0;
+    state.numAns6 = GameInstance.add.text(950,650,'');
+    state.numAns6.fontSize = 50;
+    state.numAns6.fontWeight = 'normal';
+    state.numAnsTween6 = GameInstance.add.tween(state.numAns6).to({x:380,y:365},1000,Phaser.Easing.Linear.None);
+    state.numAnsTween7 = GameInstance.add.tween(state.numAns6).to({x:950,y:650},100,Phaser.Easing.Linear.None)
    
 }
