@@ -71,7 +71,8 @@ demo.state2.prototype = {
             console.log("BtnCheck first layer");
             console.log("CorrectAns: "+ this.correctAns);
             console.log("UserAns: " + this.input0.value);
-            if (this.input0.value == this.correctAns && this.total <= 5) {
+            
+            if (this.input0.value == this.correctAns && this.total <= 3 || this.total == 4 && this.input0.value == this.metre * 100 + this.arr0[0]|| this.total == 5 && this.input0.value == this.metre * 100 + this.arr1[0]) {
                 console.log("Next button appeared.");
                 //Timer
                 this.timer.start();
@@ -100,7 +101,7 @@ demo.state2.prototype = {
                 this.tween3.onComplete.add(function(){
                     this.draw.btnNext.visible = true;
                     this.txtNext.visible = true;
-                    if (this.total == 5) {
+                    if (this.total == 6) {
                         this.draw.btnSegment.visible = true;
                         this.txtSegment.visible = true;
                         this.draw.desc.visible = true;
@@ -121,9 +122,12 @@ demo.state2.prototype = {
                 this.draw.btnTryAgain.visible = true;
                 this.txtTryAgain.visible = true;
                 console.log("What is value of this.tryAgain: " + this.tryAgain);
-
+               
                 if (this.input0.value < 100) {
                     this.word.setText(this.metre + "  m  " + this.cm + "  cm  ");
+                    if (this.total == 4) {
+                        this.word.setText(this.metre + "  m  " + this.arr0[0] + "  cm  ");
+                    }
                     this.tween8.start();
                     this.tween9.start();
                     this.circleanim0.animations.play('drawnCircle',10,false);
@@ -143,7 +147,6 @@ demo.state2.prototype = {
                     }
                 }
                 else if (this.input0.value > 100) {
-                    console.log('aaaaaaaaaaaaaaaaaa')
                     this.draw.btnTryAgain.visible = false;
                     this.txtTryAgain.visible = false;
                     this.text00.setText(this.metre + " m " + this.cm + " cm ");
@@ -225,7 +228,7 @@ demo.state2.prototype = {
             this.numAns.alpha = 0;
             this.numAnsTween1.start();
             this.drawRoundedRec.alpha = 0;
-            if (this.input0.value == this.correctAns && this.total < 5 && this.seconds >= 2 || this.boolShowAnswer == true && this.total < 5 && this.seconds >= 2) 
+            if (this.total < 7) 
             {
                 console.log("User got it correct");
                 this.draw.btnNext.visible = false;
@@ -235,6 +238,8 @@ demo.state2.prototype = {
                 //Changing the questions if user got it correct upon clicking btnNext
                 this.metre = this.randomNumbers().metreProperty;
                 this.cm = this.randomNumbers().cmProperty;
+                this.arr0 = shuffle(this.randomNumbers().arr0);
+                this.arr1 = shuffle(this.randomNumbers().arr1);
                 this.correctAns = (this.metre * 100) + this.cm;  
                 this.questions.q0.setText("What is " +  this.metre + " m " + this.cm  +" cm "+ "in centimetres? ");
                 this.total++;
@@ -262,16 +267,17 @@ demo.state2.prototype = {
                 this.seconds = 0;
                 //
                 this.questionNum.setText("Q" + this.total + " of 5");
-
-                if (this.total == 3) {
-                    this.questions.q0.setText("What is " +  this.metre + " 222222222m " + this.cm  +" cm "+ "in centimetres? ");
-                    this.text0.setText(this.metre + "ssssssssssssss m " + this.cm + "ssssssssssssss cm ");
-                this.text1.setText(this.metre + "ssssssssss m ");
-                this.text2.setText(this.cm + "ssssssssssss cm ");
-                this.text3.setText(this.correctAns+ "ssssssssss cm ");
-                }
+                
                 
             }
+            if (this.total == 4){
+                this.questions.q0.setText("What is " +  this.metre + " m " + this.arr0[0]  +" cm "+ "in centimetres? ");
+                this.word.setText(this.metre + "  m  " + this.arr0[0] + "  cm  ");
+                this.text0.setText(this.metre + " m " + this.arr0[0] + " cm ");    
+                this.text00.setText(this.metre + " m " + this.arr0[0] + " cm ");
+                this.text2.setText(this.arr0[0] + ' cm');
+                this.text22.setText(this.arr0[0] + ' cm')
+                this.text3.setText(this.metre*100+this.arr0[0]+ " cm "); }
             
         },this);
          //Try again.
@@ -642,29 +648,15 @@ demo.state2.prototype = {
 
     },
     update:function(){
-        //console.log("What is the time: " + this.seconds);
-        //console.log("Try again: " + this.tryAgain);
-        /*if (this.seconds < 2){
-            this.draw.btnNext.tint = 0x00000;
-            this.draw.btnNext.alpha = 0.1;
-            this.txtNext.alpha = 0.3;
-            this.draw.btnNext.inputEnabled = false;
-        }
-        else if (this.seconds >= 2){
-            this.draw.btnNext.tint = 0xC5DEFD;
-            this.draw.btnNext.alpha = 1;
-            this.txtNext.alpha = 1;
-            this.draw.btnNext.inputEnabled = true;
-        }*/
-
-        
     },
     randomNumbers: function(){
         let metre = (Math.floor(Math.random()*9)+1);
         let cm = (Math.floor(Math.random()*50)+10);
+        let arr0 = [10,20,30,40,50,60,70,80,90];
+        let arr1 = [1,2,3,4,5,6,7,8,9]
         
      
-        return {metreProperty:metre, cmProperty:cm}
+        return {metreProperty:metre, cmProperty:cm, }
     }
     
 };
