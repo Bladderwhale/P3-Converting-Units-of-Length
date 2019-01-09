@@ -2,7 +2,7 @@
 /**
  * @type {Phaser.State}
  */
-var GameInstance = new Phaser.Game(1500, 1000, Phaser.CANVAS);
+var GameInstance = new Phaser.Game(800, 600, Phaser.CANVAS);
 GameInstance.state.add('state0', demo.state0);
 GameInstance.state.add('state1', demo.state1);
 GameInstance.state.add('state2', demo.state2);

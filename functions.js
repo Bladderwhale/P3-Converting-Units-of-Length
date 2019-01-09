@@ -38,5 +38,10 @@ function loadAssets() {
     GameInstance.load.image('button1', 'assets/Button1.png');
     GameInstance.load.image('button2', 'assets/Button2.png');
     GameInstance.load.image('button3', 'assets/Button3.png');
-    GameInstance.load.spritesheet('circleanim', 'assets/circleanim.png',580,580,12);
+    GameInstance.load.spritesheet('circle', 'assets/circle.png',580,580,12);
 };
+
+function backGround() {
+    var backGround = GameInstance.add.sprite(0,0,'BackgroundNoText');
+   
+}

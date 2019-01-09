@@ -23,7 +23,7 @@ demo.state0.prototype = {
                 
         //Testing purposes for frameAPI
         GameInstance.canvas.id = "mainCanvas";
-        scalingCanvasWindow(1500, 1000, this);
+        scalingCanvasWindow(800, 600, this);
         //cursorUpdate(this.dots, 2, 2, this);
         //updateInputBoxPosition(11,"mainCanvas",0,0,800,600,true,this);
     },
@@ -43,7 +43,7 @@ demo.state0.prototype = {
         
         //Add video after loadedAssets();
         var video = GameInstance.add.video('intro');
-        video.addToWorld(GameInstance.world.centerX, GameInstance.world.centerY, 0.5, 0.5, 1.5, 1.4);
+        video.addToWorld(GameInstance.world.centerX, GameInstance.world.centerY, 0.5, 0.5, 800/1024, 600/768 );
         video.play(false);
         
         //Add credits after loadedAssets();
@@ -51,7 +51,7 @@ demo.state0.prototype = {
         
         credits.anchor.x = 0.5;
         credits.anchor.y = 0.5;
-        credits.scale.x = 1.5;
+        credits.scale.x = 1024/600;
         credits.scale.y = 1.5;
         credits.alpha = 0;
     },

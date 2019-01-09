@@ -1,6 +1,5 @@
 demo.state1 = function() {}
 demo.state1.prototype = {
-    title:{}, draw:{},
     preload: function(){
         loadAssets();
     },
@@ -9,7 +8,7 @@ demo.state1.prototype = {
         console.log("state1");
         addChangeStateEventListers(); 
         //Background
-        background(this);
+        backGround();
     },
     update: function(){
     }
